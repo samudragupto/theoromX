@@ -1,0 +1,10 @@
+{
+  "name": "theoremx-2026-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static site for THEOREMX 2026 — Dept. of Data Science",
+  "scripts": {
+    "vercel-build": "true"
+  },
+  "license": "UNLICENSED"
+}

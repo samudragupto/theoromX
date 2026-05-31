@@ -402,13 +402,14 @@ button { font-family: inherit; cursor: pointer; }
    ============================================================ */
 .hero {
   position: relative;
-  min-height: 100svh;
+  min-height: auto; /* Removes the massive gap */
+  padding-bottom: 4rem; /* Adds natural spacing at the bottom */
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* Aligns content to the top instead of the middle */
   overflow: hidden;
-  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(244,132,82,0.1) 0%, transparent 60%),
-              radial-gradient(ellipse 60% 50% at 80% 80%, rgba(153,162,221,0.07) 0%, transparent 50%),
-              transparent;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(79, 70, 229, 0.1) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(79, 70, 229, 0.05) 0%, transparent 50%),
+    transparent;
 }
 
 /* Floating gradient orbs */
@@ -1182,103 +1183,76 @@ button { font-family: inherit; cursor: pointer; }
 /* ============================================================
    AWARDS
    ============================================================ */
-.prizes {
-  background: transparent;
-}
+    .prizes {
+      background: #ffffff; /* Sets background to white only */
+      padding: 4rem 0; /* Slightly reduced section padding */
+    }
 
-.awards-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
-  margin-bottom: 2rem;
-}
+    .awards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Decreased from 285px */
+      gap: 1rem;
+      margin-bottom: 2rem;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-.award-card {
-  position: relative;
-  padding: 1.75rem 1.5rem;
-  background: rgba(255,255,255,0.8);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.7);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.22s, box-shadow 0.22s;
-  overflow: hidden;
-}
+    .award-card {
+      position: relative;
+      padding: 1rem; /* Decreased padding */
+      background: linear-gradient(135deg, #fff3d1 0%, #e5c05c 100%); /* Keeps the yellow */
+      border: 1px solid rgba(0, 0, 0, 0.1); /* Softer border for white bg */
+      border-radius: 12px; /* Smaller, cleaner corners */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.25s, box-shadow 0.25s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 60px; /* Decreased height */
+    }
 
-.award-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--accent-grad);
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  opacity: 0;
-  transition: opacity 0.22s;
-}
+    .award-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
 
-.award-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
-}
+    .award-name {
+      font-family: var(--font-display);
+      font-size: 0.85rem; /* Smaller text size */
+      font-weight: 600;
+      color: #382803;
+      line-height: 1.3;
+      margin: 0;
+    }
 
-.award-card:hover::before { opacity: 1; }
+    /* Update the bottom note pill so it is visible on the new white background */
+    .awards-note-pill {
+      padding: 0.6rem 1.2rem;
+      background: rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      color: var(--text);
+    }
 
-.award-num {
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  color: #a5b4fc;
-  margin-bottom: 0.85rem;
-  display: block;
-}
+    .award-desc {
+      font-size: 0.75rem;
+      color: rgba(0, 0, 0, 0.6);
+      margin-top: 0.5rem;
+      line-height: 1.4;
+      font-weight: 500;
+    }
 
-.award-icon-wrap {
-  width: 48px; height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #FFF0E8, #FFF5EE);
-  border-radius: var(--radius-sm);
-  color: var(--accent);
-  margin-bottom: 1rem;
-}
+    .awards-note {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      align-items: center;
+    }
 
-.award-name {
-  font-family: var(--font-display);
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--text);
-  line-height: 1.3;
-  letter-spacing: -0.01em;
-  margin-bottom: 0.4rem;
-}
-
-.award-desc {
-  font-size: 0.78rem;
-  color: var(--text-sub);
-  line-height: 1.55;
-}
-
-.awards-note {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-  margin-top: 1.5rem;
-}
-
-.awards-note-pill {
-  padding: 0.7rem 1.4rem;
-  background: linear-gradient(135deg, #eff6ff, #ede9fe);
-  border: 1px solid rgba(99,102,241,0.15);
-  border-radius: var(--radius-full);
-  font-family: var(--font-display);
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: var(--text);
-}
 
 /* ============================================================
    COORDINATORS
@@ -1929,7 +1903,7 @@ button { font-family: inherit; cursor: pointer; }
   .stalls-grid { grid-template-columns: 1fr; }
 
   /* Awards */
-  .awards-grid { grid-template-columns: 1fr; }
+  .awards-grid { grid-template-columns: repeat(2, 1fr); }
 
   /* Themes */
   .themes-grid { grid-template-columns: 1fr; }

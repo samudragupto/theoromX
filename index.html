@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>THEOREMX 2026 — National Research Expo | Dept. of Data Science, Dr. M.G.R. ERI</title>
+  <title>TheoremX 2026 National Research Expo | Dept. of Data Science, Dr. M.G.R. ERI</title>
   <meta name="description"
     content="THEOREMX 2026 is a National Research Expo organized by the Department of Data Science, Dr. M.G.R. Educational and Research Institute. Explore AI, Data Science, and emerging technologies." />
   <meta name="keywords"
@@ -16,12 +16,12 @@
     rel="stylesheet" />
   <style>
     /* ============================================================
-   THEOREMX 2026 — Apple-Inspired Premium Design System
+   THEOREMX 2026 - Apple-Inspired Premium Design System
 /* ============================================================
-   COLOUR TOKENS â€” Black Â· Orange Â· Dark Gray Â· Light Gray
+   COLOUR TOKENS Ã¢â‚¬â€ Black Ã‚Â· Orange Ã‚Â· Dark Gray Ã‚Â· Light Gray
    ============================================================ */
     :root {
-      /* Palette â€” Indigo Â· Purple Â· Cyan Â· Light */
+      /* Palette Ã¢â‚¬â€ Indigo Ã‚Â· Purple Ã‚Â· Cyan Ã‚Â· Light */
       --indigo: #4F46E5;
       --purple: #7C3AED;
       --cyan: #06B6D4;
@@ -1188,7 +1188,7 @@
     }
 
     /* ============================================================
-   SCHEDULE / TIMELINE — Compact Row Design
+   SCHEDULE / TIMELINE - Compact Row Design
    ============================================================ */
     .schedule {
       background: var(--bg);
@@ -1304,7 +1304,7 @@
       margin-top: 2px;
     }
 
-    /* Cards container — simple column of rows */
+    /* Cards container - simple column of rows */
     .timeline-cards {
       display: flex;
       flex-direction: column;
@@ -2252,7 +2252,7 @@
     }
 
     /* ============================================================
-   RESPONSIVE — TABLET 768px
+   RESPONSIVE - TABLET 768px
    ============================================================ */
     @media (max-width: 900px) {
 
@@ -2473,14 +2473,189 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* ============================================================
+   TRACK STATUS SECTION
+   ============================================================ */
+    .track-status-section {
+      position: relative;
+    }
+
+    .track-status-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .track-status-search {
+      margin-bottom: 2.5rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .track-search-input {
+      width: 100%;
+      max-width: 500px;
+      padding: 0.85rem 1.25rem;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: var(--text);
+      transition: all 0.25s;
+    }
+
+    .track-search-input::placeholder {
+      color: var(--text-sub);
+    }
+
+    .track-search-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    }
+
+    .track-table-wrapper {
+      overflow-x: auto;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .track-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .track-table thead {
+      background: rgba(79, 70, 229, 0.05);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .track-table th {
+      padding: 1rem 1.25rem;
+      text-align: left;
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-sub);
+    }
+
+    .track-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+
+    .track-table tbody tr:hover {
+      background: rgba(79, 70, 229, 0.03);
+    }
+
+    .track-table tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    .track-table td {
+      padding: 1.1rem 1.25rem;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    .track-id {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .track-title {
+      max-width: 350px;
+      line-height: 1.5;
+    }
+
+    .track-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.85rem;
+      border-radius: var(--radius-full);
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .track-status-accepted {
+      background: rgba(34, 197, 94, 0.12);
+      color: #22C55E;
+    }
+
+    .track-status-pending {
+      background: rgba(234, 179, 8, 0.12);
+      color: #EAB308;
+    }
+
+    .track-status-rejected {
+      background: rgba(239, 68, 68, 0.12);
+      color: #EF4444;
+    }
+
+    .track-remarks {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .remark-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.9rem;
+      color: var(--text-sub);
+    }
+
+    .remark-item svg {
+      width: 14px;
+      height: 14px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .track-status-empty {
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-sub);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+      .track-table-wrapper {
+        overflow-x: auto;
+      }
+
+      .track-table td,
+      .track-table th {
+        padding: 0.8rem 0.9rem;
+        font-size: 0.85rem;
+      }
+
+      .track-title {
+        max-width: 200px;
+      }
+    }
   </style>
 
   <style id="mobile-overrides">
     /* ======================================================
-   MOBILE OVERRIDES — injected fixes
+   MOBILE OVERRIDES - injected fixes
    ====================================================== */
 
-    /* ── 1. Hero title — scale to fit mobile screen ── */
+    /* â”€â”€ 1. Hero title - scale to fit mobile screen â”€â”€ */
     @media (max-width: 768px) {
       .hero-title {
         overflow: hidden !important;
@@ -2518,7 +2693,7 @@
       }
     }
 
-    /* ── 2. AUDI logo in nav (mobile) ── */
+    /* â”€â”€ 2. AUDI logo in nav (mobile) â”€â”€ */
     .nav-brand {
       display: flex !important;
       align-items: center !important;
@@ -2533,7 +2708,7 @@
       display: inline-block !important;
     }
 
-    /* ── 3. Mobile nav overlay (tap outside to close) ── */
+    /* â”€â”€ 3. Mobile nav overlay (tap outside to close) â”€â”€ */
     .mobile-nav-overlay {
       display: none;
       position: fixed;
@@ -2556,7 +2731,7 @@
       z-index: 999 !important;
     }
 
-    /* ── 4. Close button — larger tap target ── */
+    /* â”€â”€ 4. Close button - larger tap target â”€â”€ */
     .mobile-nav-close {
       width: 48px !important;
       height: 48px !important;
@@ -2568,7 +2743,7 @@
       cursor: pointer !important;
     }
 
-    /* ── 5. Footer logos row ── */
+    /* â”€â”€ 5. Footer logos row â”€â”€ */
     .footer-logos-row {
       display: flex !important;
       align-items: center !important;
@@ -2586,7 +2761,7 @@
       max-height: 48px !important;
     }
 
-    /* ── 6. Hero animations ── */
+    /* â”€â”€ 6. Hero animations â”€â”€ */
     @keyframes heroReveal {
       0% {
         opacity: 0;
@@ -2747,6 +2922,7 @@
         <li><a href="#themes" class="nav-link">Themes</a></li>
         <li><a href="#schedule" class="nav-link">Schedule</a></li>
         <li><a href="#stalls" class="nav-link">Experience</a></li>
+        <li><a href="#track-status" class="nav-link">Track Status</a></li>
         <li class="nav-register-item">
           <a href="https://forms.gle/HN2yXXsQz3uoho1w5" class="nav-cta" id="navRegisterBtn" target="_blank"
             rel="noopener">
@@ -2780,8 +2956,9 @@
       <li><a href="#themes" class="mobile-nav-link">Themes</a></li>
       <li><a href="#schedule" class="mobile-nav-link">Schedule</a></li>
       <li><a href="#stalls" class="mobile-nav-link">Experience</a></li>
+      <li><a href="#track-status" class="mobile-nav-link">Track Status</a></li>
       <li><a href="https://forms.gle/HN2yXXsQz3uoho1w5" class="mobile-nav-link mobile-nav-register" target="_blank"
-          rel="noopener">Register Free →</a></li>
+          rel="noopener">Register Free !!</a></li>
     </ul>
   </div>
 
@@ -2802,7 +2979,7 @@
       </h1>
       <p class="hero-subtitle anim-fade-up" style="--anim-delay:240ms">Where Research Meets Intelligence</p>
       <p class="hero-meta anim-fade-up" style="--anim-delay:300ms">
-        Department of Data Science &nbsp;·&nbsp; Dr. M.G.R. Educational and Research Institute, Chennai
+        Department of Data Science &nbsp; &nbsp; Dr. M.G.R. Educational and Research Institute, Chennai
         &nbsp;·&nbsp;
         Offline Mode
       </p>
@@ -3200,7 +3377,7 @@
           </div>
           <div class="theme-content">
             <h3 class="theme-name">Science &amp; Engineering</h3>
-            <p class="theme-desc">But not limited to…</p>
+            <p class="theme-desc">But not limited to..¦</p>
           </div>
         </div>
       </div>
@@ -3236,7 +3413,7 @@
             </div>
             <div>
               <span class="tsl-name">Morning Session</span>
-              <span class="tsl-time">09:00 – 12:00</span>
+              <span class="tsl-time">09:00 to 12:00</span>
             </div>
           </div>
           <div class="timeline-cards">
@@ -3283,7 +3460,7 @@
             </div>
             <div>
               <span class="tsl-name">Afternoon Session</span>
-              <span class="tsl-time">12:30 – 04:00</span>
+              <span class="tsl-time">12:30 to 04:00</span>
             </div>
           </div>
           <div class="timeline-cards">
@@ -3329,7 +3506,7 @@
             </div>
             <div>
               <span class="tsl-name">Evening Session</span>
-              <span class="tsl-time">04:30 – Close</span>
+              <span class="tsl-time">04:30 - Close</span>
             </div>
           </div>
           <div class="timeline-cards">
@@ -3527,6 +3704,7 @@
             <div class="sc-chip">S K Rahul Ganesh</div>
             <div class="sc-chip">V Vinitha</div>
             <div class="sc-chip">Y. Ramakrishna</div>
+            <div class="sc-chip">Lakshmidhar Reddy</div>
           </div>
           <div class="coordinators-slider-group">
             <div class="sc-chip">K. Sivaram Varaputhra</div>
@@ -3537,7 +3715,7 @@
             <div class="sc-chip">S K Rahul Ganesh</div>
             <div class="sc-chip">V Vinitha</div>
             <div class="sc-chip">Y. Ramakrishna</div>
-
+            <div class="sc-chip">Lakshmidhar Reddy</div>
           </div>
         </div>
       </div>
@@ -3592,6 +3770,7 @@
     </div>
     </div>
   </section>
+
 
   <!-- CONTACT -->
   <section class="contact section" id="contact">
@@ -3659,7 +3838,7 @@
                 </svg>
               </button>
               <div class="faq-answer">
-                <p>Abstracts should be 250–400 words in IEEE format. Include title, authors, objectives,
+                <p>Abstracts should be 250-400 words in IEEE format. Include title, authors, objectives,
                   methodology,
                   and expected outcomes.</p>
               </div>
@@ -3811,7 +3990,7 @@
           <a href="https://wa.me/917602704248" class="footer-contact-link" target="_blank" rel="noopener">+91
             7602704248</a>
           <a href="https://forms.gle/HN2yXXsQz3uoho1w5" class="footer-reg-link" target="_blank" rel="noopener">Register
-            Now →</a>
+            Now!!</a>
         </div>
       </div>
 
@@ -3819,13 +3998,13 @@
 
       <script>
         /* ============================================================
-           THEOREMX 2026 — Premium Apple-Inspired JavaScript
+           THEOREMX 2026 - Premium Apple-Inspired JavaScript
            ============================================================ */
 
         document.addEventListener('DOMContentLoaded', () => {
 
           /* =========================================================
-             NAVBAR — SCROLL GLASSMORPHISM
+             NAVBAR - SCROLL GLASSMORPHISM
              ========================================================= */
           const navbar = document.getElementById('navbar');
 
@@ -3876,7 +4055,7 @@
 
 
           /* =========================================================
-             COUNTDOWN TIMER — to 23 June 2026 09:00 IST
+             COUNTDOWN TIMER - to 23 June 2026 09:00 IST
              ========================================================= */
           const eventDate = new Date('2026-06-23T09:00:00+05:30').getTime();
 
@@ -3915,7 +4094,7 @@
 
 
           /* =========================================================
-             SCROLL REVEAL — IntersectionObserver
+             SCROLL REVEAL - IntersectionObserver
              ========================================================= */
           const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -3973,7 +4152,7 @@
 
 
           /* =========================================================
-             SCHEDULE FILTER — Session filter pills
+             SCHEDULE FILTER - Session filter pills
              ========================================================= */
           const filterBtns = document.querySelectorAll('.filter-pill');
           const timelineSessions = document.querySelectorAll('.timeline-session');
@@ -4031,7 +4210,7 @@
 
 
           /* =========================================================
-             MICRO INTERACTION — Card glow on mouse move
+             MICRO INTERACTION - Card glow on mouse move
              ========================================================= */
           const glowCards = document.querySelectorAll('.stall-card, .award-card, .theme-card, .feature-card');
 
@@ -4052,7 +4231,7 @@
 
 
           /* =========================================================
-             THEME CARD — stagger reveal
+             THEME CARD - stagger reveal
              ========================================================= */
           document.querySelectorAll('.theme-card').forEach((card, i) => {
             card.style.setProperty('--reveal-delay', `${i * 40}ms`);
@@ -4082,40 +4261,18 @@
           // Sample submission data
           const submissionData = [
             {
-              trackId: 'NCY-001',
-              title: 'Detecting Semantic Data Exfiltration in Cloud Storage Systems',
-              status: 'Accepted',
-              remarks: 'Full paper'
+              trackId: 'TX-001',
+              title: 'Burnout clock - "Before You Burn, We Warn"',
+              author: 'M Keerthana',
+              status: 'Validation under process',
+              remarks: '--'
             },
             {
-              trackId: 'NCY-002',
-              title: 'TRUSTORA: An AI-Based Agent for Trustworthy and Responsible AI',
-              status: 'Accepted',
-              remarks: 'Accepted for presentation'
-            },
-            {
-              trackId: 'NCY-003',
-              title: 'Smart Blind Navigation Band using IoT and Machine Learning',
-              status: 'Accepted',
-              remarks: 'Accepted for presentation'
-            },
-            {
-              trackId: 'NCY-004',
-              title: 'Deep Learning for Medical Image Analysis',
-              status: 'Accepted',
-              remarks: 'Full paper'
-            },
-            {
-              trackId: 'NCY-005',
-              title: 'Federated Learning for Privacy-Preserving Analytics',
-              status: 'Accepted',
-              remarks: 'Accepted for presentation'
-            },
-            {
-              trackId: 'NCY-006',
-              title: 'Neural Architecture Search for Edge Devices',
-              status: 'Accepted',
-              remarks: 'Full paper'
+              trackId: 'TX-002',
+              title: 'NEURON: A Zero-Cost Autonomous AI Research Agent with Persistent Vector Memory',
+              author: 'Sanjeev Pranay .D',
+              status: 'Validation under process',
+              remarks: '--'
             }
           ];
 
@@ -4149,7 +4306,7 @@
           <div class="result-row">
             <div class="result-cell" style="font-weight: 600; color: var(--accent);">${item.trackId}</div>
             <div class="result-cell">${item.title}</div>
-            <div class="result-cell" style="color: #10b981; font-weight: 500;">✓ ${item.status}</div>
+            <div class="result-cell" style="color: #10b981; font-weight: 500;"> ${item.status}</div>
             <div class="result-cell" style="font-size: 0.8rem;">${item.remarks}</div>
           </div>
         `).join('');
@@ -4188,6 +4345,35 @@
           });
         });
       </script>
+
+      <script>
+        // Track Status Search Functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const trackSearchInput = document.getElementById('trackSearchInput');
+  const trackTableBody = document.getElementById('trackTableBody');
+  if (trackTableBody && trackSearchInput) {
+    const trackRows = trackTableBody.querySelectorAll('tr');
+    trackSearchInput.addEventListener('input', function(e) {
+      const searchTerm = e.target.value.toLowerCase();
+      trackRows.forEach(row => {
+        const trackId = row.querySelector('.track-id');
+        const trackTitle = row.querySelector('.track-title');
+        if (trackId && trackTitle) {
+          const idText = trackId.textContent.toLowerCase();
+          const titleText = trackTitle.textContent.toLowerCase();
+          if (idText.includes(searchTerm) || titleText.includes(searchTerm) || searchTerm === '') {
+            row.style.display = '';
+          } else {
+            row.style.display = 'none';
+          }
+        }
+      });
+    });
+  }
+});
+
+      </script>
 </body>
 
 </html>
+

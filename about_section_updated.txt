@@ -1,0 +1,50 @@
+<section class="about section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-left scroll-reveal">
+          <p class="section-eyebrow">About THEOREMX</p>
+          <h2 class="about-heading">
+            <span>Where Research</span>
+            <span>Meets <em>Intelligence</em></span>
+          </h2>
+          <p class="about-desc">
+            THEOREMX is a one-day national research expo bringing together students, innovators, and
+            researchers to
+            showcase groundbreaking ideas in AI, Data Science, and emerging technologies.
+          </p>
+          <div class="about-stats">
+            <div class="stat-chip">
+              <span class="stat-num">23</span>
+              <span class="stat-lbl">June 2026</span>
+            </div>
+            <div class="stat-chip">
+              <span class="stat-num">Offline</span>
+              <span class="stat-lbl">Mode</span>
+            </div>
+            <div class="stat-chip">
+              <span class="stat-num">FREE</span>
+              <span class="stat-lbl">Registration</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-right scroll-reveal" style="--reveal-delay:100ms">
+          <div class="about-info-section">
+            <div class="info-block">
+              <img src="./audi logo-VGoDBqTU.png" alt="Department Logo" style="max-height: 60px; object-fit: contain; margin-bottom: 1rem; display: block;" />
+              <h4 class="info-title">About the Department</h4>
+              <p class="info-desc">The Department of Data Science at Dr. M.G.R. Educational and Research Institute is dedicated to fostering research excellence and innovation in data science, artificial intelligence, and emerging technologies.</p>
+            </div>
+            <div class="info-block">
+              <img src="./abt clg.png" alt="College Logo" style="max-height: 60px; object-fit: contain; margin-bottom: 1rem; display: block;" />
+              <h4 class="info-title">About the College</h4>
+              <p class="info-desc">Dr. M.G.R. Educational and Research Institute is a premier institution in Chennai committed to academic excellence, research, and developing industry-ready professionals across multiple disciplines.</p>
+            </div>
+            <div class="info-block">
+              <h4 class="info-title">About the Event</h4>
+              <p class="info-desc">THEOREMX 2026 brings together the brightest minds in research and technology. It's an opportunity to showcase innovation, network with experts, and explore the cutting edge of AI and data science.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

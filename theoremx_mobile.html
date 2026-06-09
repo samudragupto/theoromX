@@ -2391,18 +2391,49 @@
       }
 
       .result-table {
-        font-size: 0.75rem;
+        min-width: 100%;
+      }
+
+      .result-row.header {
+        display: none;
       }
 
       .result-row {
-        grid-template-columns: 0.8fr 1.5fr 1fr 1fr 1.5fr;
-        gap: 0.5rem;
-        padding: 0.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 1.25rem;
+        border: 1px solid rgba(95, 74, 139, 0.2);
+        border-radius: var(--radius-md);
+        margin-bottom: 1rem;
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .result-row:last-child {
+        margin-bottom: 0;
       }
 
       .result-cell {
-        font-size: 0.75rem;
+        font-size: 0.85rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
       }
+
+      .result-cell::before {
+        font-size: 0.65rem;
+        color: var(--accent);
+        font-family: var(--font-mono);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-weight: 600;
+      }
+
+      .result-row .result-cell:nth-child(1)::before { content: "Track ID"; }
+      .result-row .result-cell:nth-child(2)::before { content: "Title"; }
+      .result-row .result-cell:nth-child(3)::before { content: "Status"; }
+      .result-row .result-cell:nth-child(4)::before { content: "Remarks"; }
+      .result-row .result-cell:nth-child(5)::before { content: "Venue"; }
 
       /* Info Blocks */
       .about-info-section {

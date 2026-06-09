@@ -1140,7 +1140,7 @@
 
     .result-row {
       display: grid;
-      grid-template-columns: 0.8fr 1.2fr 2fr 1.5fr 1.5fr 1.5fr;
+      grid-template-columns: 0.8fr 2fr 1.5fr 1.5fr 1.5fr;
       gap: 1rem;
       padding: 1rem;
       border-bottom: 1px solid var(--border);
@@ -2524,18 +2524,52 @@
       }
 
       .result-table {
-        font-size: 0.75rem;
+        min-width: 100%;
+      }
+
+      .result-row.header {
+        display: none;
       }
 
       .result-row {
-        grid-template-columns: 0.8fr 1.5fr 1fr 1fr 1.5fr;
-        gap: 0.5rem;
-        padding: 0.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 1.25rem;
+        border: 1px solid rgba(95, 74, 139, 0.2);
+        border-radius: var(--radius-md);
+        margin-bottom: 1rem;
+        background: rgba(255, 255, 255, 0.03);
+        box-sizing: border-box;
+        width: 100%;
+      }
+
+      .result-row:last-child {
+        margin-bottom: 0;
       }
 
       .result-cell {
-        font-size: 0.75rem;
+        font-size: 0.85rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        word-break: break-word;
       }
+
+      .result-cell::before {
+        font-size: 0.65rem;
+        color: var(--accent);
+        font-family: var(--font-mono);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-weight: 600;
+      }
+
+      .result-row .result-cell:nth-child(1)::before { content: "Track ID"; }
+      .result-row .result-cell:nth-child(2)::before { content: "Title"; }
+      .result-row .result-cell:nth-child(3)::before { content: "Status"; }
+      .result-row .result-cell:nth-child(4)::before { content: "Remarks"; }
+      .result-row .result-cell:nth-child(5)::before { content: "Venue"; }
 
       /* Info Blocks */
       .about-info-section {
@@ -3027,6 +3061,51 @@
       height: 13px;
       border-radius: 2px;
     }
+
+    /* Fix search result table scaling for mobile/tablet */
+    @media (max-width: 850px) {
+      .result-table {
+        min-width: 100% !important;
+      }
+      .result-row.header {
+        display: none !important;
+      }
+      .result-row {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0.75rem !important;
+        padding: 1.25rem !important;
+        border: 1px solid rgba(95, 74, 139, 0.2) !important;
+        border-radius: var(--radius-md) !important;
+        margin-bottom: 1rem !important;
+        background: rgba(255, 255, 255, 0.03) !important;
+        box-sizing: border-box !important;
+        width: 100% !important;
+      }
+      .result-row:last-child {
+        margin-bottom: 0 !important;
+      }
+      .result-cell {
+        font-size: 0.85rem !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0.25rem !important;
+        word-break: break-word !important;
+      }
+      .result-cell::before {
+        font-size: 0.65rem !important;
+        color: var(--accent) !important;
+        font-family: var(--font-mono) !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        font-weight: 600 !important;
+      }
+      .result-row .result-cell:nth-child(1)::before { content: "Track ID" !important; }
+      .result-row .result-cell:nth-child(2)::before { content: "Title" !important; }
+      .result-row .result-cell:nth-child(3)::before { content: "Status" !important; }
+      .result-row .result-cell:nth-child(4)::before { content: "Remarks" !important; }
+      .result-row .result-cell:nth-child(5)::before { content: "Venue" !important; }
+    }
   </style>
 
 </head>
@@ -3289,7 +3368,6 @@
             <div class="result-table">
               <div class="result-row header">
                 <div class="result-cell">Track ID</div>
-                <div class="result-cell">Author</div>
                 <div class="result-cell">Title</div>
                 <div class="result-cell">Status</div>
                 <div class="result-cell">Remarks</div>
@@ -4437,63 +4515,63 @@
             {
               trackId: 'THX-001',
               title: 'Burnout clock - "Before You Burn, We Warn"',
-              author: 'M Keerthana',
+
               status: 'Accepted',
               remarks: '--'
             },
             {
               trackId: 'THX-002',
               title: 'NEURON: A Zero-Cost Autonomous AI Research Agent with Persistent Vector Memory',
-              author: 'Sanjeev Pranay .D',
+
               status: 'Accepted',
               remarks: '--'
             },
             {
               trackId: 'THX-003',
               title: 'Al-Driven Smart City Safety and Surveillance System"',
-              author: 'Chethla saiteja',
+
               status: 'Accepted',
               remarks: '--'
             },
             {
               trackId: 'THX-004',
               title: 'EXPLAINABLE MULTI CLASS BRAIN TUMOR CLASSIFICATION FROM MRI IMAGES',
-              author: 'Likhitha Vadluri ',
+
               status: 'Accepted',
               remarks: '--'
             },
             {
               trackId: 'THX-005',
               title: 'AI-Driven Automation and Workforce Transformation: Economic Impacts, Displacement, and Reskilling Strategies',
-              author: 'Ayush Kumar Ojha',
+
               status: 'Accepted',
               remarks: '--'
             },
             {
               trackId: 'THX-006',
               title: 'System for AI',
-              author: 'G. Guna Varshini ',
+
               status: 'Accepted',
               remarks: '--'
             },
             {
               trackId: 'THX-007',
               title: 'Student study habits vs marks analyzer',
-              author: 'CH.DHANUSH',
+
               status: 'Accepted',
               remarks: '--'
             },
             {
               trackId: 'THX-008',
               title: 'Pack Smart : The Knapsack Algorithm for Hostel Students',
-              author: 'D.Mahesh',
+
               status: 'Accepted',
               remarks: '--'
             },
             {
               trackId: 'THX-009',
               title: 'Augmented Reality Navigation for Visually Impaired: An Intelligent Multi-Feature Assistive Framework',
-              author: 'Farhana Mumtaj A',
+
               status: 'Under Final Review',
               remarks: '--'
             }
@@ -4508,7 +4586,6 @@
             resultContent.innerHTML = data.map((item, index) => `
           <div class="result-row" style="animation: fadeSlideUp 0.6s ease-out ${index * 80}ms forwards; opacity: 0;">
             <div class="result-cell" style="font-weight: 600; color: var(--accent);">${item.trackId}</div>
-            <div class="result-cell" style="font-weight: 500;">${item.author}</div>
             <div class="result-cell">${item.title}</div>
             <div class="result-cell" style="color: #10b981; font-weight: 500;">${item.status}</div>
             <div class="result-cell" style="font-size: 0.8rem;">${item.remarks}</div>

@@ -1032,7 +1032,7 @@
 
     .result-row {
       display: grid;
-      grid-template-columns: 1fr 2fr 1.5fr 1.5fr;
+      grid-template-columns: 1fr 2fr 1.5fr 1.5fr 1.5fr;
       gap: 1rem;
       padding: 1rem;
       border-bottom: 1px solid var(--border);
@@ -2395,7 +2395,7 @@
       }
 
       .result-row {
-        grid-template-columns: 0.8fr 1.5fr 1fr 1fr;
+        grid-template-columns: 0.8fr 1.5fr 1fr 1fr 1.5fr;
         gap: 0.5rem;
         padding: 0.75rem;
       }
@@ -3071,7 +3071,7 @@
       <div class="search-wrapper scroll-reveal">
         <div class="search-card">
           <div class="search-input-group">
-            <input type="text" id="trackIdInput" placeholder="Enter your Track ID" class="search-input"
+            <input type="text" id="trackIdInput" placeholder="search ur submission ex" class="search-input"
               aria-label="Track ID Search" />
             <button id="searchBtn" class="search-btn" aria-label="Search submissions">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -3089,6 +3089,7 @@
                 <div class="result-cell">Title</div>
                 <div class="result-cell">Status</div>
                 <div class="result-cell">Remarks</div>
+                <div class="result-cell">Venue</div>
               </div>
               <div id="resultContent"></div>
             </div>
@@ -4263,6 +4264,7 @@
             <div class="result-cell">${item.title}</div>
             <div class="result-cell" style="color: #10b981; font-weight: 500;">✓ ${item.status}</div>
             <div class="result-cell" style="font-size: 0.8rem;">${item.remarks}</div>
+            <div class="result-cell" style="font-size: 0.8rem;">Mode :- <b>Offline</b> <br> Venue :- Dr. M. G. R. Educational and Research Institute</div>
           </div>
         `).join('');
 

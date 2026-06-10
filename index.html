@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -2565,11 +2565,25 @@
         font-weight: 600;
       }
 
-      .result-row .result-cell:nth-child(1)::before { content: "Track ID"; }
-      .result-row .result-cell:nth-child(2)::before { content: "Title"; }
-      .result-row .result-cell:nth-child(3)::before { content: "Status"; }
-      .result-row .result-cell:nth-child(4)::before { content: "Remarks"; }
-      .result-row .result-cell:nth-child(5)::before { content: "Venue"; }
+      .result-row .result-cell:nth-child(1)::before {
+        content: "Track ID";
+      }
+
+      .result-row .result-cell:nth-child(2)::before {
+        content: "Title";
+      }
+
+      .result-row .result-cell:nth-child(3)::before {
+        content: "Status";
+      }
+
+      .result-row .result-cell:nth-child(4)::before {
+        content: "Remarks";
+      }
+
+      .result-row .result-cell:nth-child(5)::before {
+        content: "Venue";
+      }
 
       /* Info Blocks */
       .about-info-section {
@@ -3067,9 +3081,11 @@
       .result-table {
         min-width: 100% !important;
       }
+
       .result-row.header {
         display: none !important;
       }
+
       .result-row {
         display: flex !important;
         flex-direction: column !important;
@@ -3082,9 +3098,11 @@
         box-sizing: border-box !important;
         width: 100% !important;
       }
+
       .result-row:last-child {
         margin-bottom: 0 !important;
       }
+
       .result-cell {
         font-size: 0.85rem !important;
         display: flex !important;
@@ -3092,6 +3110,7 @@
         gap: 0.25rem !important;
         word-break: break-word !important;
       }
+
       .result-cell::before {
         font-size: 0.65rem !important;
         color: var(--accent) !important;
@@ -3100,11 +3119,26 @@
         letter-spacing: 0.05em !important;
         font-weight: 600 !important;
       }
-      .result-row .result-cell:nth-child(1)::before { content: "Track ID" !important; }
-      .result-row .result-cell:nth-child(2)::before { content: "Title" !important; }
-      .result-row .result-cell:nth-child(3)::before { content: "Status" !important; }
-      .result-row .result-cell:nth-child(4)::before { content: "Remarks" !important; }
-      .result-row .result-cell:nth-child(5)::before { content: "Venue" !important; }
+
+      .result-row .result-cell:nth-child(1)::before {
+        content: "Track ID" !important;
+      }
+
+      .result-row .result-cell:nth-child(2)::before {
+        content: "Title" !important;
+      }
+
+      .result-row .result-cell:nth-child(3)::before {
+        content: "Status" !important;
+      }
+
+      .result-row .result-cell:nth-child(4)::before {
+        content: "Remarks" !important;
+      }
+
+      .result-row .result-cell:nth-child(5)::before {
+        content: "Venue" !important;
+      }
     }
   </style>
 
@@ -4571,6 +4605,27 @@
             {
               trackId: 'THX-009',
               title: 'Augmented Reality Navigation for Visually Impaired: An Intelligent Multi-Feature Assistive Framework',
+
+              status: 'Accepted',
+              remarks: '--'
+            },
+            {
+              trackId: 'THX-010',
+              title: 'SMART PARKING SYSTEM MANAGEMENT USING IOT ',
+
+              status: 'Under Final Review',
+              remarks: '--'
+            },
+            {
+              trackId: 'THX-011',
+              title: 'Stock Price Prediction ',
+
+              status: 'Under Final Review',
+              remarks: '--'
+            },
+            {
+              trackId: 'THX-012',
+              title: 'Smart Dustbin',
 
               status: 'Under Final Review',
               remarks: '--'

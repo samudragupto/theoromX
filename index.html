@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -2371,6 +2371,12 @@
     }
 
     @media (max-width: 768px) {
+      /* Force scroll-reveal visible on mobile */
+      .scroll-reveal {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
       :root {
         --section-py: clamp(3rem, 7vw, 5rem);
       }
@@ -2479,6 +2485,11 @@
     }
 
     @media (max-width: 560px) {
+      /* Force scroll-reveal visible on mobile */
+      .scroll-reveal {
+        opacity: 1 !important;
+        transform: none !important;
+      }
 
       /* Stalls */
       .stalls-grid {
@@ -2814,6 +2825,14 @@
     }
 
     @media (max-width: 768px) {
+      /* Force scroll-reveal & fade-in visible on mobile */
+      .scroll-reveal,
+      .fade-in,
+      .anim-fade-up {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
       .track-table-wrapper {
         overflow-x: auto;
       }
@@ -3076,10 +3095,25 @@
       border-radius: 2px;
     }
 
-    /* Fix search result table scaling for mobile/tablet */
+    /* Fix search result table scaling and visibility for mobile/tablet */
     @media (max-width: 850px) {
+      /* 1. Prevent animations from hiding the section on mobile */
+      .scroll-reveal, .fade-in, .anim-fade-up {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      /* 2. Fix iOS Safari flex-collapse bug */
+      .search-results {
+        overflow-x: hidden !important; 
+        display: block !important;
+        width: 100% !important;
+        min-height: 50px !important;
+      }
+
       .result-table {
-        min-width: 100% !important;
+        display: block !important; /* Block prevents height collapsing to 0 */
+        width: 100% !important;
       }
 
       .result-row.header {
@@ -3094,7 +3128,8 @@
         border: 1px solid rgba(95, 74, 139, 0.2) !important;
         border-radius: var(--radius-md) !important;
         margin-bottom: 1rem !important;
-        background: rgba(255, 255, 255, 0.03) !important;
+        background: #ffffff !important; /* Solid white ensures it doesn't blend in */
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
         box-sizing: border-box !important;
         width: 100% !important;
       }
@@ -3109,6 +3144,7 @@
         flex-direction: column !important;
         gap: 0.25rem !important;
         word-break: break-word !important;
+        color: var(--text) !important;
       }
 
       .result-cell::before {
@@ -3117,27 +3153,21 @@
         font-family: var(--font-mono) !important;
         text-transform: uppercase !important;
         letter-spacing: 0.05em !important;
-        font-weight: 600 !important;
+        font-weight: 700 !important;
       }
 
-      .result-row .result-cell:nth-child(1)::before {
-        content: "Track ID" !important;
-      }
+      .result-row .result-cell:nth-child(1)::before { content: "Track ID" !important; }
+      .result-row .result-cell:nth-child(2)::before { content: "Title" !important; }
+      .result-row .result-cell:nth-child(3)::before { content: "Status" !important; }
+      .result-row .result-cell:nth-child(4)::before { content: "Remarks" !important; }
+      .result-row .result-cell:nth-child(5)::before { content: "Venue" !important; }
 
-      .result-row .result-cell:nth-child(2)::before {
-        content: "Title" !important;
-      }
-
-      .result-row .result-cell:nth-child(3)::before {
-        content: "Status" !important;
-      }
-
-      .result-row .result-cell:nth-child(4)::before {
-        content: "Remarks" !important;
-      }
-
-      .result-row .result-cell:nth-child(5)::before {
-        content: "Venue" !important;
+      /* Fix Track Status Table overflow */
+      .track-table-wrapper {
+        display: block !important;
+        width: 100% !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important; /* Enables smooth scrolling on iPhones */
       }
     }
   </style>
@@ -4779,7 +4809,7 @@
 
           function displaySubmissions(data) {
             resultContent.innerHTML = data.map((item, index) => `
-          <div class="result-row" style="animation: fadeSlideUp 0.6s ease-out ${index * 80}ms forwards; opacity: 0;">
+          <div class="result-row" style="animation: fadeSlideUp 0.6s ease-out ${index * 80}ms forwards;">
             <div class="result-cell" style="font-weight: 600; color: var(--accent);">${item.trackId}</div>
             <div class="result-cell">${item.title}</div>
             <div class="result-cell" style="color: #10b981; font-weight: 500;">${item.status}</div>

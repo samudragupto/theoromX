@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -2371,6 +2371,7 @@
     }
 
     @media (max-width: 768px) {
+
       /* Force scroll-reveal visible on mobile */
       .scroll-reveal {
         opacity: 1 !important;
@@ -2485,6 +2486,7 @@
     }
 
     @media (max-width: 560px) {
+
       /* Force scroll-reveal visible on mobile */
       .scroll-reveal {
         opacity: 1 !important;
@@ -2825,6 +2827,7 @@
     }
 
     @media (max-width: 768px) {
+
       /* Force scroll-reveal & fade-in visible on mobile */
       .scroll-reveal,
       .fade-in,
@@ -3097,22 +3100,26 @@
 
     /* Fix search result table scaling and visibility for mobile/tablet */
     @media (max-width: 850px) {
+
       /* 1. Prevent animations from hiding the section on mobile */
-      .scroll-reveal, .fade-in, .anim-fade-up {
+      .scroll-reveal,
+      .fade-in,
+      .anim-fade-up {
         opacity: 1 !important;
         transform: none !important;
       }
 
       /* 2. Fix iOS Safari flex-collapse bug */
       .search-results {
-        overflow-x: hidden !important; 
+        overflow-x: hidden !important;
         display: block !important;
         width: 100% !important;
         min-height: 50px !important;
       }
 
       .result-table {
-        display: block !important; /* Block prevents height collapsing to 0 */
+        display: block !important;
+        /* Block prevents height collapsing to 0 */
         width: 100% !important;
       }
 
@@ -3128,8 +3135,9 @@
         border: 1px solid rgba(95, 74, 139, 0.2) !important;
         border-radius: var(--radius-md) !important;
         margin-bottom: 1rem !important;
-        background: #ffffff !important; /* Solid white ensures it doesn't blend in */
-        box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
+        background: #ffffff !important;
+        /* Solid white ensures it doesn't blend in */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05) !important;
         box-sizing: border-box !important;
         width: 100% !important;
       }
@@ -3156,18 +3164,33 @@
         font-weight: 700 !important;
       }
 
-      .result-row .result-cell:nth-child(1)::before { content: "Track ID" !important; }
-      .result-row .result-cell:nth-child(2)::before { content: "Title" !important; }
-      .result-row .result-cell:nth-child(3)::before { content: "Status" !important; }
-      .result-row .result-cell:nth-child(4)::before { content: "Remarks" !important; }
-      .result-row .result-cell:nth-child(5)::before { content: "Venue" !important; }
+      .result-row .result-cell:nth-child(1)::before {
+        content: "Track ID" !important;
+      }
+
+      .result-row .result-cell:nth-child(2)::before {
+        content: "Title" !important;
+      }
+
+      .result-row .result-cell:nth-child(3)::before {
+        content: "Status" !important;
+      }
+
+      .result-row .result-cell:nth-child(4)::before {
+        content: "Remarks" !important;
+      }
+
+      .result-row .result-cell:nth-child(5)::before {
+        content: "Venue" !important;
+      }
 
       /* Fix Track Status Table overflow */
       .track-table-wrapper {
         display: block !important;
         width: 100% !important;
         overflow-x: auto !important;
-        -webkit-overflow-scrolling: touch !important; /* Enables smooth scrolling on iPhones */
+        -webkit-overflow-scrolling: touch !important;
+        /* Enables smooth scrolling on iPhones */
       }
     }
   </style>
@@ -4799,7 +4822,99 @@
 
               status: 'Accepted',
               remarks: '--'
-            }
+            },
+            {
+              trackId: 'THX-033',
+              title: 'Offline Smartphone-Based Glaucoma Screening Using a Low-Cost  Fundus Clip-On Lens and On-Device Deep Learning: A Frugal  Innovation Framework for Rural India',
+
+              status: 'Accepted',
+              remarks: '--'
+            },
+            {
+              trackId: 'THX-034',
+              title: 'Offline Fake Pesticide Detection via Paper-Based Sensor and Smartphone Colorimetry',
+
+              status: 'Accepted',
+              remarks: '--'
+            },
+            {
+              trackId: 'THX-035',
+              title: 'Pneumonia Detection from Lung Auscultation Sounds Using a Low-Cost Digital Stethoscope and Offline 1D-CNN Inference on ESP32: A Frugal Paediatric Screening Tool for ASHA Workers in Remote India',
+
+              status: 'Accepted',
+              remarks: '--'
+            },
+            {
+              trackId: 'THX-036',
+              title: 'An Advanced AI-Driven Forensic Framework for Multimodal Cybercrime Investigation and Automated Fake Profile Detection',
+
+              status: 'Accepted',
+              remarks: '--'
+            },
+            {
+              trackId: 'THX-037',
+              title: 'Smart Insurance Premium Prediction System Using Machine Learning',
+
+              status: 'Accepted',
+              remarks: '--'
+            },
+            {
+              trackId: 'THX-038',
+              title: 'Robust PPG Heart Rate Estimation under Motion Artifact',
+
+              status: 'Accepted',
+              remarks: '--'
+            },
+            {
+              trackId: 'THX-039',
+              title: 'Efficient transformers for music source seperation',
+
+              status: 'Accepted',
+              remarks: '--'
+            },
+            {
+              trackId: 'THX-040',
+              title: 'Automated design of QEC Codes via Reinforcement learning ',
+
+              status: 'Accepted',
+              remarks: '--'
+            },
+            {
+              trackId: 'THX-042',
+              title: 'Semantic Segmentation of Historical Manuscripts ',
+
+              status: 'Accepted',
+              remarks: '--'
+            },
+            {
+              trackId: 'THX-043',
+              title: 'Verifiable Blind Quantum Computation',
+
+              status: 'Accepted',
+              remarks: '--'
+            },
+            {
+              trackId: 'THX-044',
+              title: 'Web based voting management system',
+
+              status: 'Accepted',
+              remarks: '--'
+            },
+            {
+              trackId: 'THX-045',
+              title: ' AI-Based Early Detection of Salmonella Infection  Using Vent Image Analysis',
+
+              status: 'Accepted',
+              remarks: '--'
+            },
+            {
+              trackId: 'THX-046',
+              title: 'Detecting Silent Data Corruptions in GPUs',
+
+              status: 'Accepted',
+              remarks: '--'
+            },
+
           ];
 
           const searchInput = document.getElementById('trackIdInput');

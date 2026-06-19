@@ -1140,7 +1140,7 @@
 
     .result-row {
       display: grid;
-      grid-template-columns: 0.8fr 2fr 1.5fr 1.5fr 1.5fr;
+      grid-template-columns: 0.8fr 1.5fr 2fr 1fr 1.5fr;
       gap: 1rem;
       padding: 1rem;
       border-bottom: 1px solid var(--border);
@@ -2581,19 +2581,19 @@
       }
 
       .result-row .result-cell:nth-child(2)::before {
-        content: "Title";
+        content: "Authors";
       }
 
       .result-row .result-cell:nth-child(3)::before {
-        content: "Status";
+        content: "Title";
       }
 
       .result-row .result-cell:nth-child(4)::before {
-        content: "Remarks";
+        content: "Status";
       }
 
       .result-row .result-cell:nth-child(5)::before {
-        content: "Venue";
+        content: "Details";
       }
 
       /* Info Blocks */
@@ -3129,6 +3129,39 @@
       .result-row:last-child {
         margin-bottom: 0 !important;
       }
+    /* ── Mobile: stacked card view for submissions on small screens ── */
+    @media (max-width: 600px) {
+      .result-table {
+        gap: 0.5rem;
+        display: flex;
+        flex-direction: column;
+      }
+      .result-row.header { display: none; }
+      .result-row:not(.header) {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+        padding: 1rem 1.2rem;
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-sm);
+        border-bottom: 1px solid var(--border) !important;
+      }
+      .result-cell { font-size: 0.82rem; }
+      .result-cell:first-child {
+        font-family: var(--font-mono);
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--accent);
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 0.35rem;
+        margin-bottom: 0.2rem;
+      }
+    }
+
 
       .result-cell {
         font-size: 0.85rem !important;
@@ -3149,10 +3182,10 @@
       }
 
       .result-row .result-cell:nth-child(1)::before { content: "Track ID" !important; }
-      .result-row .result-cell:nth-child(2)::before { content: "Title" !important; }
-      .result-row .result-cell:nth-child(3)::before { content: "Status" !important; }
-      .result-row .result-cell:nth-child(4)::before { content: "Remarks" !important; }
-      .result-row .result-cell:nth-child(5)::before { content: "Venue" !important; }
+      .result-row .result-cell:nth-child(2)::before { content: "Authors" !important; }
+      .result-row .result-cell:nth-child(3)::before { content: "Title" !important; }
+      .result-row .result-cell:nth-child(4)::before { content: "Status" !important; }
+      .result-row .result-cell:nth-child(5)::before { content: "Details" !important; }
 
       /* Fix Track Status Table overflow */
       .track-table-wrapper {
@@ -3569,12 +3602,12 @@
           </div>
           <div id="searchResults" class="search-results" style="display:none;">
             <div class="result-table">
-              <div class="result-row header">
+              <div class="result-row header" style="grid-template-columns: 0.8fr 1.5fr 2fr 1fr 1.5fr;">
                 <div class="result-cell">Track ID</div>
+                <div class="result-cell">Authors</div>
                 <div class="result-cell">Title</div>
                 <div class="result-cell">Status</div>
-                <div class="result-cell">Remarks</div>
-                <div class="result-cell">Venue</div>
+                <div class="result-cell">Details</div>
               </div>
               <div id="resultContent"></div>
             </div>
@@ -4708,302 +4741,6 @@
           });
 
           document.querySelectorAll('.award-card').forEach((card, i) => {
-            card.style.setProperty('--reveal-delay', `${i * 55}ms`);
-          });
-
-          document.querySelectorAll('.timeline-card').forEach((card, i) => {
-            card.style.setProperty('--reveal-delay', `${i * 50}ms`);
-            card.classList.add('scroll-reveal');
-            revealObserver.observe(card);
-          });
-
-        });
-
-      </script>
-
-      <!-- Search Submissions Script -->
-      <script>
-        document.addEventListener('DOMContentLoaded', () => {
-          // Sample submission data
-          const submissionData = [
-            {
-              trackId: 'THX-001',
-              title: 'Burnout clock - "Before You Burn, We Warn"',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-002',
-              title: 'NEURON: A Zero-Cost Autonomous AI Research Agent with Persistent Vector Memory',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-003',
-              title: 'Al-Driven Smart City Safety and Surveillance System"',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-004',
-              title: 'EXPLAINABLE MULTI CLASS BRAIN TUMOR CLASSIFICATION FROM MRI IMAGES',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-005',
-              title: 'AI-Driven Automation and Workforce Transformation: Economic Impacts, Displacement, and Reskilling Strategies',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-006',
-              title: 'System for AI',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-007',
-              title: 'Student study habits vs marks analyzer',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-008',
-              title: 'Pack Smart : The Knapsack Algorithm for Hostel Students',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-009',
-              title: 'Augmented Reality Navigation for Visually Impaired: An Intelligent Multi-Feature Assistive Framework',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-010',
-              title: 'SMART PARKING SYSTEM MANAGEMENT USING IOT ',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-011',
-              title: 'Stock Price Prediction ',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-012',
-              title: 'Smart Dustbin',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-013',
-              title: 'HR AND EMPLOYEE MANAGEMENT SYSTEM USING MERN STACK',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-014',
-              title: 'The Role of Artificial Intelligence in Entrepreneurship and Startup Development',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-015',
-              title: 'Qr based intelligence assessment system ',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-016',
-              title: 'AI based resume and candidate ranking system ',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-017',
-              title: 'Lightweight Zero-Knowledge Proof Authentication Using Schnorr Protocol on Elliptic Curves',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-018',
-              title: 'Sattwik JOBS',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-019',
-              title: 'A Multifactorial Analysis of Why AI Hallucinates ',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-020',
-              title: 'Crowdsourced Offline Water Quality Mapping via GSM-SMS on Raspberry Pi: A Community-Driven Participatory Sensing Architecture for Rural India Without Internet Connectivity',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-021',
-              title: 'AgroShield: A Frugal AI-Based Counterfeit Pesticide Detection System for Smallholder Farmers',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-022',
-              title: 'Data Science & Big Data Analytics',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-023',
-              title: 'TinyInfer: A From-Scratch C++17 Neural Network Inference Engine with AVX2 SIMD Kernels, ONNX Integration, and Python Bindings',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-024',
-              title: 'Real time emotion detection from text and facial expressions using AI',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-025',
-              title: 'Ai- based water quality detection using ph strip and computer vision and cloud dashboard',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-026',
-              title: 'Smart medicine reminder for elders ',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-027',
-              title: 'Web application traffic control: Configuring intercepting proxy architecture via burp suite',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-028',
-              title: 'Hybrid Machine learning based early disease prediction using patient symptoms and medical history',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-029',
-              title: 'Acoustic Material Identification for Plastic Waste Sorting Using  Impact-Sound Analysis and a Quantized 2D-CNN on ESP32: A  Frugal Edge-AI Assistive Device for Informal Waste Pickers',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-030',
-              title: 'HEART RISK PREDICTION AND MONITORING SYSTEM USING ML',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-031',
-              title: 'Offline Smartphone-Based Glaucoma Screening Using a Low-Cost  Fundus Clip-On Lens and On-Device Deep Learning: A Frugal  Innovation Framework for Rural India',
-
-              status: 'Accepted',
-              remarks: '--'
-            },
-            {
-              trackId: 'THX-032',
-              title: 'Automated Exploit Verification and Threat   Modeling: Implementing Penetration Testing  Lifecycle Frameworks via Metasploit',
-
-              status: 'Accepted',
-              remarks: '--'
-            }
-          ];
-
-          const searchInput = document.getElementById('trackIdInput');
-          const searchBtn = document.getElementById('searchBtn');
-          const searchResults = document.getElementById('searchResults');
-          const resultContent = document.getElementById('resultContent');
-
-          function displaySubmissions(data) {
-            resultContent.innerHTML = data.map((item, index) => `
-          <div class="result-row" style="animation: fadeSlideUp 0.6s ease-out ${index * 80}ms forwards; opacity: 0;">
-            <div class="result-cell" style="font-weight: 600; color: var(--accent);">${item.trackId}</div>
-            <div class="result-cell">${item.title}</div>
-            <div class="result-cell" style="color: #10b981; font-weight: 500;">${item.status}</div>
-            <div class="result-cell" style="font-size: 0.8rem;">${item.remarks}</div>
-            <div class="result-cell" style="font-size: 0.8rem;">Mode :- <b>Offline</b> <br> Venue :- Dr. M. G. R. Educational and Research Institute</div>
-          </div>
-        `).join('');
-            searchResults.style.display = 'block';
-          }
-
-          function performSearch() {
-            const trackId = searchInput.value.trim().toUpperCase();
-
-            if (!trackId) {
-              displaySubmissions(submissionData);
-              return;
-            }
-
-            const results = submissionData.filter(item => item.trackId === trackId);
-
-            if (results.length === 0) {
-              resultContent.innerHTML = `
-            <div style="padding: 2rem; text-align: center; color: var(--text-sub);">
-              <p>No submission found with Track ID: ${trackId}</p>
-              <p style="font-size: 0.8rem; margin-top: 0.5rem;">Please check your Track ID and try again.</p>
-            </div>
-          `;
-              searchResults.style.display = 'block';
-              return;
-            }
-
-            displaySubmissions(results);
-          }
-
-          // Display all submissions on page load
-          displaySubmissions(submissionData);
-
-          searchBtn.addEventListener('click', performSearch);
-          searchInput.addEventListener('keypress', e => {
-            if (e.key === 'Enter') performSearch();
-          });
-          searchInput.addEventListener('input', performSearch);
-        });
-      </script>
 
       <!-- Scroll Animation Script -->
       <script>
@@ -5150,6 +4887,447 @@
           startAutoScroll();
         });
       </script>
+
+      <!-- Search Submissions Script -->
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          // Sample submission data
+          const submissionData = [
+            {
+              trackId: "THX-001",
+              authors: "M Keerthana, B Kavinaya",
+              title: "Burnout clock - \u201cBefore You Burn, We Warn\"",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-002",
+              authors: "Sanjeev Pranay .D, Nayab .E, Venkata Mahendra",
+              title: "NEURON: A Zero-Cost Autonomous AI Research Agent with Persistent Vector Memory",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-003",
+              authors: "Chethla Saiteja, Chereddy Dinesh Reddy, CHETTE AKHIL BHARGAV",
+              title: "Al-Driven Smart City Safety and Surveillance System",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-004",
+              authors: "Vijay Pratap",
+              title: "Research paper",
+              status: "Not accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-005",
+              authors: "Likhitha Vadluri, Usha Varshini",
+              title: "EXPLAINABL MULTI CLASS BRAIN TUMOR CLASSIFICATION FROM MRI IMAGES",
+              status: "Not accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-006",
+              authors: "Ayush Kumar Ojha",
+              title: "AI-Driven Automation and Workforce Transformation: Economic Impacts, Displacement, and Reskilling Strategies",
+              status: "Not accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-007",
+              authors: "G. Guna Varshini, G. Meghana",
+              title: "System for AI",
+              status: "Not accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-008",
+              authors: "CH.DHANUSH, D.BHANU PRAKASH",
+              title: "Student study habits vs marks analyzer",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-009",
+              authors: "D.Mahesh, D.Sri Vishnu",
+              title: "Pack Smart : The Knapsack Algorithm for Hostel Students",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-010",
+              authors: "Farhana Mumtaj A, S.Evangeline Steffy, D.Mohana",
+              title: "Augmented Reality Navigation for Visually Impaired: An Intelligent Multi-Feature Assistive Framework",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-011",
+              authors: "C.Sai Shiva, CH.Chaitanya, C.CHARAN",
+              title: "SMART PARKING SYSTEM MANAGEMENT USING IOT",
+              status: "Not accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-012",
+              authors: "C Subbarayudu, Ch Surya Siddhartha, B Maheswar Reddy",
+              title: "Stock Price Prediction",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-013",
+              authors: "DIVYADHARSHINI.S, JANANI G, Parimala CH",
+              title: "HR AND EMPLOYEE MANAGEMENT SYSTEM USING MERN STACK",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-014",
+              authors: "Shriyam  Chaturvedi",
+              title: "The Role of Artificial Intelligence in Entrepreneurship and Startup Development",
+              status: "Not accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-015",
+              authors: "Yashwanth",
+              title: "Qr based intelligence assessment system",
+              status: "Not accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-016",
+              authors: "Katta Gouthami, K.Kavya, M.Mounika Chowdhary",
+              title: "AI based resume and candidate ranking system",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-017",
+              authors: "GORA MANJUNATH REDDY, Gurram Venkateswarlu, GOBBURI VISHNU VAMSI",
+              title: "Lightweight Zero-Knowledge Proof Authentication Using Schnorr Protocol on Elliptic Curves",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-018",
+              authors: "Sattwik Modak",
+              title: "Sattwik JOBS",
+              status: "Not accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-019",
+              authors: "Balendra Kumar Maddula",
+              title: "A Multifactorial Analysis of Why AI Hallucinates",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-020",
+              authors: "MOHAMMED IZHAN S",
+              title: "Crowdsourced Offline Water Quality Mapping via GSM-SMS on Raspberry Pi: A Community-Driven Participatory Sensing Architecture for Rural India Without Internet Connectivity",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-021",
+              authors: "T.Dharshini, Nishanthini A, Shaik Dhaliya",
+              title: "AgroShield: A Frugal AI-Based Counterfeit Pesticide Detection System for Smallholder Farmers",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-022",
+              authors: "Varun Dwivedi",
+              title: "Data Science & Big Data Analytics",
+              status: "Not accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-023",
+              authors: "K. Venkata Jayanth",
+              title: "TinyInfer: A From-Scratch C++17 Neural Network Inference Engine with AVX2 SIMD Kernels, ONNX Integration, and Python Bindings",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-024",
+              authors: "Chintham Muktha Sree, Bursu Siri",
+              title: "Real time emotion detection from text and facial expressions using AI",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-025",
+              authors: "Ch.Subhash, Ch.Phani Kumar, D.Manoj Kumar",
+              title: "Ai- based water quality detection using ph strip and computer vision and cloud dashboard",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-026",
+              authors: "G Yalliswar, Gadamsetty Venkata Tejaswar, E Vinay Kumar",
+              title: "Smart medicine reminder for elders",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-027",
+              authors: "Shivani, Kaviya.D",
+              title: "Web application traffic control: Configuring intercepting proxy architecture via burp suite",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-028",
+              authors: "Chinnireddy Lohitha reddy, Challa Mounika",
+              title: "Hybrid Machine learning based early disease prediction using patient symptoms and medical history",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-029",
+              authors: "Sameer Yadav",
+              title: "Acoustic Material Identification for Plastic Waste Sorting Using  Impact-Sound Analysis and a Quantized 2D-CNN on ESP32: A  Frugal Edge-AI Assistive Device for Informal Waste Pickers",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-030",
+              authors: "D.Rajitha, G.Sneha Sandhya",
+              title: "HEART RISK PREDICTION AND MONITORING SYSTEM USING ML",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-031",
+              authors: "Kalaivani. R",
+              title: "Offline Smartphone-Based Glaucoma Screening Using a Low-Cost  Fundus Clip-On Lens and On-Device Deep Learning: A Frugal  Innovation Framework for Rural India",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-032",
+              authors: "Sradha Sudheesh, Suren Subramani V",
+              title: "Automated Exploit Verification and Threat   Modeling: Implementing Penetration Testing  Lifecycle Frameworks via Metasploit",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-033",
+              authors: "Guru Sai Nath Reddy, Sudheer",
+              title: "Offline Fake Pesticide Detection via Paper-Based Sensor and Smartphone Colorimetry",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-034",
+              authors: "Ch. Sarath kumar",
+              title: "Pneumonia Detection from Lung Auscultation Sounds Using a Low-Cost Digital Stethoscope and Offline 1D-CNN Inference on ESP32: A Frugal Paediatric Screening Tool for ASHA Workers in Remote India",
+              status: "Not accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-035",
+              authors: "Challa Mounika, Chinnireddy Lohitha Reddy",
+              title: "Hybrid Machine Learning Based- Early Disease Prediction Using Patient Symptoms and Medical History",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-036",
+              authors: "KAMALINI V, JOTHIRAMAN J",
+              title: "An Advanced AI-Driven Forensic Framework for Multimodal Cybercrime Investigation and Automated Fake Profile Detection",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-037",
+              authors: "Poojaa S, Kiruthika Ruby B, Rathimeena",
+              title: "Smart Insurance Premium Prediction System Using Machine Learning",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-038",
+              authors: "R NIKHIL",
+              title: "Robust PPG Heart Rate Estimation under Motion Artifact",
+              status: "Not accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-039",
+              authors: "BOLLINENI VINAI",
+              title: "Efficient transformers for music source seperation",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-040",
+              authors: "Ranjith M, Sowmya Sri",
+              title: "Automated design of QEC Codes via Reinforcement learning",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-041",
+              authors: "Ch Ratnakar",
+              title: "Semantic Segmentation of Historical Manuscripts",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-042",
+              authors: "Sk Anwar Basha",
+              title: "Verifiable Blind Quantum Computation",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-047",
+              authors: "M.Uday Krishna, M.Bala Thilak, M.Rishi",
+              title: "Web based voting management system",
+              status: "Not accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-048",
+              authors: "RajendraPrasad V M, vinay Y M, Sathwik gowda P H",
+              title: "AI-Based Early Detection of Salmonella Infection  Using Vent Image Analysis",
+              status: "Not accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-049",
+              authors: "Hari Prasad K, Ganesh M",
+              title: "LinkShield \u2013 Intelligent URL Analysis, Threat Detection & Phishing Learning Hub",
+              status: "Not accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-050",
+              authors: "Galeti Hema Sree, G.Meghana, G.Guna Varshini",
+              title: "Resume to job-match",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-051",
+              authors: "Deepthi Muthukumar, Muthukumar S",
+              title: "ResiScan: Explainable Protein Language Model Embeddings for Rapid Antibiotic Resistance Gene Classification",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-052",
+              authors: "Kirthika R, Prity christy E.P, Sweety Evangelin D",
+              title: "Creating an Annotated Dataset for an Chatbot Development",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-053",
+              authors: "Bhoobika, Shoaiba Fathima, Harsha vardhini",
+              title: "Speech data for regional language recognition",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-054",
+              authors: "Dacharla Rajitha, Gaddam Sneha Sandhya",
+              title: "HEART RISK PREDICTION AND MONITORING SYSTEM",
+              status: "Accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-043",
+              authors: "Anamuddin Ahmad",
+              title: "Research work",
+              status: "Not accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-044",
+              authors: "Atina Jahnavi",
+              title: "DSA patterns",
+              status: "Not accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-045",
+              authors: "Gajjala Naga Sandhya",
+              title: "Zero-Shot Event Detection in Multilingual Streams",
+              status: "Not accepted",
+              remarks: '--'
+            },
+            {
+              trackId: "THX-046",
+              authors: "Samuel Oral Robert",
+              title: "Detecting Silent Data Corruptions in GPUs",
+              status: "Accepted",
+              remarks: '--'
+            },
+          ];
+
+          const searchInput = document.getElementById('trackIdInput');
+          const searchBtn = document.getElementById('searchBtn');
+          const searchResults = document.getElementById('searchResults');
+          const resultContent = document.getElementById('resultContent');
+
+          function displaySubmissions(data) {
+            resultContent.innerHTML = data.map((item, index) => `
+          <div class="result-row" style="animation: fadeSlideUp 0.6s ease-out ${index * 80}ms forwards; grid-template-columns: 0.8fr 1.5fr 2fr 1fr 1.5fr;">
+            <div class="result-cell" style="font-weight: 600; color: var(--accent);">${item.trackId}</div>
+            <div class="result-cell" style="font-size: 0.85rem; font-weight: 500;">${item.authors}</div>
+            <div class="result-cell">${item.title}</div>
+            <div class="result-cell" style="color: ${item.status.toLowerCase() === 'accepted' ? '#10b981' : '#ef4444'}; font-weight: 500;">${item.status}</div>
+            <div class="result-cell" style="font-size: 0.8rem;">
+              ${item.status.toLowerCase() === 'accepted' ? 'Mode :Offline <br> Venue : Dr. M. G. R. Educational and Research Institute' : item.remarks}
+            </div>
+          </div>
+        `).join('');
+            searchResults.style.display = 'block';
+          }
+
+          function performSearch() {
+            const trackId = searchInput.value.trim().toUpperCase();
+
+            if (!trackId) {
+              displaySubmissions(submissionData);
+              return;
+            }
+
+            const results = submissionData.filter(item => item.trackId === trackId);
+
+            if (results.length === 0) {
+              resultContent.innerHTML = `
+            <div style="padding: 2rem; text-align: center; color: var(--text-sub);">
+              <p>No submission found with Track ID: ${trackId}</p>
+              <p style="font-size: 0.8rem; margin-top: 0.5rem;">Please check your Track ID and try again.</p>
+            </div>
+          `;
+              searchResults.style.display = 'block';
+              return;
+            }
+
+            displaySubmissions(results);
+          }
+
+          // Display all submissions on page load
+          displaySubmissions(submissionData);
+
+          searchBtn.addEventListener('click', performSearch);
+          searchInput.addEventListener('keypress', e => {
+            if (e.key === 'Enter') performSearch();
+          });
+          searchInput.addEventListener('input', performSearch);
+        });
+      </script>
+
 </body>
 
 </html>

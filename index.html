@@ -721,58 +721,7 @@
       transform: translateY(-2px);
     }
 
-    /* Countdown */
-    .countdown-wrap {
-      display: inline-flex;
-      align-items: center;
-      gap: 0;
-      background: rgba(255, 255, 255, 0.5);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 1.25rem 1.75rem;
-      box-shadow: var(--shadow-md);
-    }
 
-    .countdown-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-width: 60px;
-    }
-
-    .countdown-num {
-      font-family: var(--font-display);
-      font-size: clamp(1.5rem, 4vw, 2.5rem);
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: -0.03em;
-      line-height: 1;
-      background: var(--accent-grad);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .countdown-lbl {
-      font-family: var(--font-mono);
-      font-size: 0.55rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-sub);
-      margin-top: 0.3rem;
-    }
-
-    .countdown-sep {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--text-sub);
-      padding: 0 0.25rem;
-      padding-bottom: 1.25rem;
-      opacity: 0.4;
-    }
 
     /* Scroll Hint */
     .hero-scroll-hint {
@@ -855,80 +804,160 @@
       overflow: hidden;
     }
 
-    .carousel-item {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      inset: 0;
-      opacity: 0;
-      transition: opacity 0.6s ease-in-out;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0, 0, 0, 0.05);
-      overflow: hidden;
-    }
-
-    .carousel-item.active {
-      opacity: 1;
-      z-index: 2;
-    }
-
-    .carousel-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .carousel-controls {
+    /* ============================================================
+       GALLERY CUSTOM STYLES
+       ============================================================ */
+    .gallery-filters {
       display: flex;
       justify-content: center;
-      align-items: center;
-      gap: 1rem;
-      padding: 2rem 0;
-      position: relative;
-      z-index: 10;
-    }
-
-    .carousel-nav {
-      display: flex;
-      gap: 0.6rem;
       flex-wrap: wrap;
-      justify-content: center;
+      gap: 0.8rem;
+      margin-bottom: 2.5rem;
     }
 
-    .carousel-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: rgba(79, 70, 229, 0.2);
-      border: 2px solid transparent;
+    .gallery-filter-btn {
+      padding: 0.6rem 1.2rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border);
+      background: var(--bg-glass);
+      color: var(--text-sub);
+      font-size: 0.85rem;
+      font-weight: 500;
       cursor: pointer;
       transition: all 0.3s ease;
     }
 
-    .carousel-dot.active {
-      background: var(--accent);
-      border-color: var(--accent);
-      box-shadow: 0 0 12px rgba(79, 70, 229, 0.4);
+    .gallery-filter-btn:hover,
+    .gallery-filter-btn.active {
+      background: var(--accent-grad);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 4px 15px rgba(79, 70, 229, 0.25);
     }
 
-    .carousel-dot:hover {
-      border-color: var(--accent);
-      background: rgba(79, 70, 229, 0.5);
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
     }
 
-    /* Horizontal scroll hint */
-    .carousel-hint {
+    .gallery-item {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      background: var(--bg-glass);
+      border: 1px solid var(--bg-glass-border);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.4) 60%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.25rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-item-overlay {
+      opacity: 1;
+    }
+
+    .gallery-item-tag {
       font-family: var(--font-mono);
       font-size: 0.65rem;
-      color: var(--text-sub);
-      letter-spacing: 0.1em;
       text-transform: uppercase;
-      opacity: 0.6;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+    }
+
+    .gallery-item-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      margin: 0;
+      line-height: 1.3;
+    }
+
+    /* Lightbox Modal */
+    .lightbox-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .lightbox-modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 75vh;
+      object-fit: contain;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-2xl);
+    }
+
+    .lightbox-caption {
+      color: #fff;
       margin-top: 1rem;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
       text-align: center;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -2.5rem;
+      right: 0;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s ease;
+    }
+
+    .lightbox-close:hover {
+      opacity: 1;
     }
 
     /* ============================================================
@@ -1051,124 +1080,7 @@
       line-height: 1.65;
     }
 
-    /* ============================================================
-   SEARCH SUBMISSIONS SECTION
-   ============================================================ */
-    .search-section {
-      background: linear-gradient(135deg, var(--bg) 0%, rgba(248, 250, 252, 0.8) 100%);
-    }
 
-    .search-wrapper {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .search-card {
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      box-shadow: var(--shadow-lg);
-    }
-
-    .search-input-group {
-      display: flex;
-      gap: 0.75rem;
-      margin-bottom: 2rem;
-    }
-
-    .search-input {
-      flex: 1;
-      padding: 0.9rem 1.25rem;
-      background: rgba(255, 255, 255, 0.6);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      font-family: var(--font-body);
-      font-size: 0.95rem;
-      color: var(--text);
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .search-input:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(95, 74, 139, 0.1);
-    }
-
-    .search-input::placeholder {
-      color: var(--text-sub);
-    }
-
-    .search-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.9rem 1.75rem;
-      background: var(--accent-grad);
-      color: #fff;
-      font-family: var(--font-display);
-      font-size: 0.88rem;
-      font-weight: 600;
-      border: none;
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: var(--shadow-accent);
-      white-space: nowrap;
-    }
-
-    .search-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(95, 74, 139, 0.3);
-    }
-
-    .search-btn:active {
-      transform: translateY(0);
-    }
-
-    .search-results {
-      margin-top: 1.5rem;
-      overflow-x: auto;
-    }
-
-    .result-table {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .result-row {
-      display: grid;
-      grid-template-columns: 0.8fr 1.5fr 2.5fr 0.8fr 1.8fr;
-      gap: 0.75rem;
-      padding: 0.9rem 1rem;
-      border-bottom: 1px solid var(--border);
-      min-width: 0;
-    }
-
-    .result-row.header {
-      background: rgba(95, 74, 139, 0.06);
-      border-radius: var(--radius-md) var(--radius-md) 0 0;
-      font-weight: 600;
-      color: var(--accent);
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      padding: 0.85rem 1rem;
-    }
-
-    .result-cell {
-      font-size: 0.85rem;
-      color: var(--text-sub);
-      line-height: 1.5;
-    }
-
-    .result-row:last-child {
-      border-bottom: none;
-      border-radius: 0 0 var(--radius-md) var(--radius-md);
-    }
 
     .stat-lbl {
       font-family: var(--font-mono);
@@ -2413,15 +2325,7 @@
         font-size: 0.6rem;
       }
 
-      .countdown-wrap {
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        padding: 1rem;
-      }
 
-      .countdown-item {
-        min-width: 48px;
-      }
 
       .hero-scroll-hint {
         display: none;
@@ -2625,15 +2529,7 @@
         justify-content: center;
       }
 
-      /* Countdown */
-      .countdown-wrap {
-        width: 100%;
-        justify-content: center;
-      }
 
-      .countdown-num {
-        font-size: 1.75rem;
-      }
 
       /* Coord */
       .coord-grid {
@@ -2850,6 +2746,236 @@
       .track-title {
         max-width: 200px;
       }
+    }
+
+    /* ============================================================
+    AWARDS CARD STYLING & GLOW SPOTLIGHT EFFECTS
+    ============================================================ */
+    .winners-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .winner-card {
+      --base: 280;
+      /* Purple/Indigo theme */
+      --spread: 200;
+      --radius: 16;
+      --border: 2;
+      --backdrop: var(--bg-glass);
+      --size: 250;
+      --outer: 1;
+      --border-size: calc(var(--border, 2) * 1px);
+      --spotlight-size: calc(var(--size, 150) * 1px);
+      --hue: calc(var(--base) + (var(--xp, 0) * var(--spread, 0)));
+      --bg-spot-opacity: 0.08;
+      --border-spot-opacity: 0.6;
+      --border-light-opacity: 0.25;
+
+      position: relative;
+      background-image: radial-gradient(var(--spotlight-size) var(--spotlight-size) at calc(var(--x, 0) * 1px) calc(var(--y, 0) * 1px),
+          hsl(var(--hue, 210) 100% 70% / var(--bg-spot-opacity, 0.08)), transparent);
+      background-color: var(--backdrop, transparent);
+      background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
+      background-position: 50% 50%;
+      background-attachment: fixed;
+      border: var(--border-size) solid var(--bg-glass-border);
+      border-radius: var(--radius-lg);
+      padding: 2.2rem 2rem;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow: hidden;
+      box-sizing: border-box;
+      min-height: 280px;
+      touch-action: none;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .winner-card::before,
+    .winner-card::after {
+      pointer-events: none;
+      content: "";
+      position: absolute;
+      inset: calc(var(--border-size) * -1);
+      border: var(--border-size) solid transparent;
+      border-radius: calc(var(--radius) * 1px);
+      background-attachment: fixed;
+      background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      -webkit-mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
+      -webkit-mask-clip: padding-box, border-box;
+      -webkit-mask-composite: source-in, xor;
+      mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
+      mask-clip: padding-box, border-box;
+      mask-composite: intersect;
+    }
+
+    .winner-card::before {
+      background-image: radial-gradient(calc(var(--spotlight-size) * 0.75) calc(var(--spotlight-size) * 0.75) at calc(var(--x, 0) * 1px) calc(var(--y, 0) * 1px),
+          hsl(var(--hue, 210) 100% 70% / var(--border-spot-opacity, 0.6)), transparent 100%);
+      filter: brightness(1.5);
+    }
+
+    .winner-card::after {
+      background-image: radial-gradient(calc(var(--spotlight-size) * 0.5) calc(var(--spotlight-size) * 0.5) at calc(var(--x, 0) * 1px) calc(var(--y, 0) * 1px),
+          hsl(0 100% 100% / var(--border-light-opacity, 0.25)), transparent 100%);
+    }
+
+    /* Glow backdrop blur overlay */
+    .winner-card>[data-glow] {
+      position: absolute;
+      inset: 0;
+      will-change: filter;
+      opacity: var(--outer, 1);
+      border-radius: calc(var(--radius) * 1px);
+      border-width: calc(var(--border-size) * 20);
+      filter: blur(calc(var(--border-size) * 10));
+      background: none;
+      pointer-events: none;
+      border: none;
+    }
+
+    .winner-card>[data-glow]::before {
+      inset: -10px;
+      border-width: 10px;
+    }
+
+    .winner-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-xl), 0 0 25px rgba(79, 70, 229, 0.25);
+      border-color: rgba(79, 70, 229, 0.35);
+    }
+
+    .winner-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.2rem;
+      width: 100%;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .winner-badge {
+      display: inline-block;
+      align-self: center;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--purple);
+      background: rgba(124, 58, 237, 0.1);
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-full);
+    }
+
+    .winner-track {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(79, 70, 229, 0.1);
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-sm);
+      letter-spacing: 0.05em;
+    }
+
+    .winner-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      flex-grow: 1;
+      width: 100%;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .winner-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.4;
+      margin: 0;
+      text-align: center;
+    }
+
+    .winner-name {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      max-width: 100%;
+      align-self: center;
+      padding: 0.78rem 1rem;
+      font-size: 0.96rem;
+      font-weight: 800;
+      line-height: 1.5;
+      color: #312e81;
+      margin: 0.2rem 0 0;
+      text-align: center;
+      border: 1px solid rgba(234, 179, 8, 0.34);
+      border-radius: 14px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(245, 243, 255, 0.88)),
+        radial-gradient(circle at top left, rgba(250, 204, 21, 0.28), transparent 58%);
+      box-shadow:
+        0 14px 34px rgba(49, 46, 129, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .winner-name::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.7) 45%, transparent 70%);
+      transform: translateX(-120%);
+      transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+
+    .winner-card:hover .winner-name {
+      transform: translateY(-2px);
+      border-color: rgba(234, 179, 8, 0.58);
+      box-shadow:
+        0 18px 40px rgba(79, 70, 229, 0.18),
+        0 0 22px rgba(234, 179, 8, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    }
+
+    .winner-card:hover .winner-name::before {
+      transform: translateX(120%);
+    }
+
+    .winner-college {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--indigo);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: auto;
+      text-align: center;
     }
   </style>
 
@@ -3218,7 +3344,6 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="#about" class="nav-link">About</a></li>
         <li><a href="#gallery" class="nav-link">Gallery</a></li>
-        <li><a href="#search" class="nav-link">Track</a></li>
         <li><a href="#themes" class="nav-link">Themes</a></li>
         <li><a href="#schedule" class="nav-link">Schedule</a></li>
         <li><a href="#stalls" class="nav-link">Experience</a></li>
@@ -3253,7 +3378,6 @@
     <ul class="mobile-nav-links">
       <li><a href="#about" class="mobile-nav-link">About</a></li>
       <li><a href="#gallery" class="mobile-nav-link">Gallery</a></li>
-      <li><a href="#search" class="mobile-nav-link">Track</a></li>
       <li><a href="#themes" class="mobile-nav-link">Themes</a></li>
       <li><a href="#schedule" class="mobile-nav-link">Schedule</a></li>
       <li><a href="#stalls" class="mobile-nav-link">Experience</a></li>
@@ -3295,20 +3419,6 @@
         </a>
         <a href="#about" class="btn-ghost-hero" id="heroExploreBtn">Explore Event</a>
       </div>
-      <!-- Countdown -->
-      <div class="countdown-wrap anim-fade-up" style="--anim-delay:460ms">
-        <div class="countdown-item"><span class="countdown-num" id="cd-days">00</span><span
-            class="countdown-lbl">Days</span></div>
-        <div class="countdown-sep">:</div>
-        <div class="countdown-item"><span class="countdown-num" id="cd-hours">00</span><span
-            class="countdown-lbl">Hours</span></div>
-        <div class="countdown-sep">:</div>
-        <div class="countdown-item"><span class="countdown-num" id="cd-mins">00</span><span
-            class="countdown-lbl">Minutes</span></div>
-        <div class="countdown-sep">:</div>
-        <div class="countdown-item"><span class="countdown-num" id="cd-secs">00</span><span
-            class="countdown-lbl">Seconds</span></div>
-      </div>
     </div>
 
   </section>
@@ -3336,35 +3446,270 @@
         <h2 class="section-heading">Launch Event Gallery</h2>
         <p class="section-subheading">Memorable moments from THEOREMX 2026</p>
       </div>
-    </div>
-    <div class="gallery-wrapper scroll-reveal">
-      <div class="gallery-container">
-        <div class="carousel-content">
-          <div class="carousel-item active">
-            <img src="image-1.png" alt="Launch Event Photo 1" loading="lazy" />
+      <!-- Filters -->
+      <div class="gallery-filters scroll-reveal">
+        <button class="gallery-filter-btn active" data-filter="all">All Photos</button>
+        <button class="gallery-filter-btn" data-filter="launch">Launch</button>
+        <button class="gallery-filter-btn" data-filter="inauguration">Inauguration</button>
+        <button class="gallery-filter-btn" data-filter="expo">During Expo</button>
+        <button class="gallery-filter-btn" data-filter="facilitation">Facilitation</button>
+        <button class="gallery-filter-btn" data-filter="winners">Winners</button>
+      </div>
+
+      <!-- Grid -->
+      <div class="gallery-grid scroll-reveal">
+        <!-- Launch Moments -->
+        <div class="gallery-item scroll-reveal" data-category="launch" style="cursor: pointer;">
+          <img src="image-1.png" alt="Launch Event - Inauguration Ceremony" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">Launch Moment</span>
+            <h4 class="gallery-item-title">TheoremX 2026 - Inauguration Ceremony</h4>
           </div>
-          <div class="carousel-item">
-            <img src="image-2.png" alt="Launch Event Photo 2" loading="lazy" />
+        </div>
+        <div class="gallery-item scroll-reveal" data-category="launch" style="cursor: pointer;">
+          <img src="image-2.png" alt="Launch Event - Special Keynote Address" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">Launch Moment</span>
+            <h4 class="gallery-item-title">TheoremX 2026 - Special Keynote Address</h4>
           </div>
-          <div class="carousel-item">
-            <img src="image-3.png" alt="Launch Event Photo 3" loading="lazy" />
+        </div>
+        <div class="gallery-item scroll-reveal" data-category="launch" style="cursor: pointer;">
+          <img src="image-3.png" alt="Launch Event - Exhibition Hall Overview" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">Launch Moment</span>
+            <h4 class="gallery-item-title">TheoremX 2026 - Exhibition Hall Overview</h4>
           </div>
-          <div class="carousel-item">
-            <img src="image-4.JPG" alt="Launch Event Photo 4" loading="lazy" />
+        </div>
+        <div class="gallery-item scroll-reveal" data-category="launch" style="cursor: pointer;">
+          <img src="image-4.JPG" alt="Launch Event - Ribbon Cutting Ceremony" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">Launch Moment</span>
+            <h4 class="gallery-item-title">TheoremX 2026 - Ribbon Cutting Ceremony</h4>
+          </div>
+        </div>
+
+        <!-- Inauguration -->
+        <div class="gallery-item scroll-reveal" data-category="inauguration" style="cursor: pointer;">
+          <img src="image-5.jpeg" alt="Inaugural Ceremony - Lighting of the Lamp" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">Inauguration</span>
+            <h4 class="gallery-item-title">Lighting of the Lamp Ceremony</h4>
+          </div>
+        </div>
+        <div class="gallery-item scroll-reveal" data-category="inauguration" style="cursor: pointer;">
+          <img src="image-6.jpeg" alt="Inaugural Ceremony - Dignitaries Address" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">Inauguration</span>
+            <h4 class="gallery-item-title">Dignitaries Address at Inauguration</h4>
+          </div>
+        </div>
+        <div class="gallery-item scroll-reveal" data-category="inauguration" style="cursor: pointer;">
+          <img src="image-7.jpeg" alt="Inaugural Ceremony - Guest Introduction" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">Inauguration</span>
+            <h4 class="gallery-item-title">Introduction of Chief Guests</h4>
+          </div>
+        </div>
+        <div class="gallery-item scroll-reveal" data-category="inauguration" style="cursor: pointer;">
+          <img src="image-8.jpeg" alt="Inaugural Ceremony - Welcome Address" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">Inauguration</span>
+            <h4 class="gallery-item-title">Welcome Address to Attendees</h4>
+          </div>
+        </div>
+        <div class="gallery-item scroll-reveal" data-category="inauguration" style="cursor: pointer;">
+          <img src="image9.jpeg" alt="Inaugural Ceremony - Dignitary Presentation" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">Inauguration</span>
+            <h4 class="gallery-item-title">Dignitary Presentation</h4>
+          </div>
+        </div>
+        <div class="gallery-item scroll-reveal" data-category="inauguration" style="cursor: pointer;">
+          <img src="image-10.jpeg" alt="Inaugural Ceremony - Event Briefing" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">Inauguration</span>
+            <h4 class="gallery-item-title">Event Briefing Session</h4>
+          </div>
+        </div>
+        <div class="gallery-item scroll-reveal" data-category="inauguration" style="cursor: pointer;">
+          <img src="image-11.jpeg" alt="Inaugural Ceremony - Gathering of Innovators" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">Inauguration</span>
+            <h4 class="gallery-item-title">Gathering of Innovators</h4>
+          </div>
+        </div>
+        <div class="gallery-item scroll-reveal" data-category="inauguration" style="cursor: pointer;">
+          <img src="image-12.jpeg" alt="Inaugural Ceremony - Keynote Presentation" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">Inauguration</span>
+            <h4 class="gallery-item-title">Inaugural Keynote Presentation</h4>
+          </div>
+        </div>
+
+        <!-- During Expo -->
+        <div class="gallery-item scroll-reveal" data-category="expo" style="cursor: pointer;">
+          <img src="image13.jpeg" alt="Event Expo - Project Demonstration" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">During Expo</span>
+            <h4 class="gallery-item-title">Project Demonstration at Expo</h4>
+          </div>
+        </div>
+        <div class="gallery-item scroll-reveal" data-category="expo" style="cursor: pointer;">
+          <img src="image-14.jpeg" alt="Event Expo - Student Interaction" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">During Expo</span>
+            <h4 class="gallery-item-title">Student Interaction and Discussion</h4>
+          </div>
+        </div>
+        <div class="gallery-item scroll-reveal" data-category="expo" style="cursor: pointer;">
+          <img src="image-15.jpeg" alt="Event Expo - Prototype Showcase" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">During Expo</span>
+            <h4 class="gallery-item-title">Prototype Showcase at Stalls</h4>
+          </div>
+        </div>
+        <div class="gallery-item scroll-reveal" data-category="expo" style="cursor: pointer;">
+          <img src="image-16.jpeg" alt="Event Expo - Innovative Solutions" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">During Expo</span>
+            <h4 class="gallery-item-title">Innovative Solutions Exhibition</h4>
+          </div>
+        </div>
+        <div class="gallery-item scroll-reveal" data-category="expo" style="cursor: pointer;">
+          <img src="image-17.jpeg" alt="Event Expo - Panel Review" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">During Expo</span>
+            <h4 class="gallery-item-title">Jury Panel Reviewing Projects</h4>
+          </div>
+        </div>
+        <div class="gallery-item scroll-reveal" data-category="expo" style="cursor: pointer;">
+          <img src="image-18.jpeg" alt="Event Expo - Tech Showcase" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">During Expo</span>
+            <h4 class="gallery-item-title">Emerging Tech Showcase</h4>
+          </div>
+        </div>
+
+        <!-- Facilitation -->
+        <div class="gallery-item scroll-reveal" data-category="facilitation" style="cursor: pointer;">
+          <img src="fac1.jpeg" alt="Facilitation Ceremony - Honouring Chief Guest" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">Facilitation</span>
+            <h4 class="gallery-item-title">Honouring Chief Guest - Inaugural Address</h4>
+          </div>
+        </div>
+        <div class="gallery-item scroll-reveal" data-category="facilitation" style="cursor: pointer;">
+          <img src="fac3.jpeg" alt="Facilitation Ceremony - Guest Keynote Speaker" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">Facilitation</span>
+            <h4 class="gallery-item-title">Guest Keynote Speaker Presentation</h4>
+          </div>
+        </div>
+        <div class="gallery-item scroll-reveal" data-category="facilitation" style="cursor: pointer;">
+          <img src="fac4.jpeg" alt="Facilitation Ceremony - Evaluator Appreciation" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">Facilitation</span>
+            <h4 class="gallery-item-title">Evaluator Appreciation Ceremony</h4>
+          </div>
+        </div>
+        <div class="gallery-item scroll-reveal" data-category="facilitation" style="cursor: pointer;">
+          <img src="fac5.jpeg" alt="Facilitation Ceremony - Interaction with Students" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">Facilitation</span>
+            <h4 class="gallery-item-title">Chief Guest Interaction with Students</h4>
+          </div>
+        </div>
+        <div class="gallery-item scroll-reveal" data-category="facilitation" style="cursor: pointer;">
+          <img src="fac6.jpeg" alt="Facilitation Ceremony - Valedictory Session" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">Facilitation</span>
+            <h4 class="gallery-item-title">Valedictory Session Facilitation</h4>
+          </div>
+        </div>
+
+        <!-- Winners -->
+        <div class="gallery-item scroll-reveal" data-category="winners" style="cursor: pointer;">
+          <img src="image-19.jpeg" alt="Winner Celebration - Technical Excellence" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">Winner Memory</span>
+            <h4 class="gallery-item-title">Technical Excellence Award Ceremony</h4>
+          </div>
+        </div>
+        <div class="gallery-item scroll-reveal" data-category="winners" style="cursor: pointer;">
+          <img src="image-20.jpeg" alt="Winner Celebration - Best Innovation" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">Winner Memory</span>
+            <h4 class="gallery-item-title">Best Innovation Award Winner</h4>
+          </div>
+        </div>
+        <div class="gallery-item scroll-reveal" data-category="winners" style="cursor: pointer;">
+          <img src="image-21.jpeg" alt="Winner Celebration - Achievement Awards" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">Winner Memory</span>
+            <h4 class="gallery-item-title">Achievement Awards Presentation</h4>
+          </div>
+        </div>
+        <div class="gallery-item scroll-reveal" data-category="winners" style="cursor: pointer;">
+          <img src="image-22.jpeg" alt="Winner Celebration - Prototype Winner" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">Winner Memory</span>
+            <h4 class="gallery-item-title">Prototype Winner Felicitation</h4>
+          </div>
+        </div>
+        <div class="gallery-item scroll-reveal" data-category="winners" style="cursor: pointer;">
+          <img src="image-23.jpeg" alt="Winner Celebration - Best Teamwork" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">Winner Memory</span>
+            <h4 class="gallery-item-title">Best Teamwork Award Winners</h4>
+          </div>
+        </div>
+        <div class="gallery-item scroll-reveal" data-category="winners" style="cursor: pointer;">
+          <img src="image-24.jpeg" alt="Winner Celebration - Emerging Tech Award" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">Winner Memory</span>
+            <h4 class="gallery-item-title">Emerging Tech Award Felicitation</h4>
+          </div>
+        </div>
+        <div class="gallery-item scroll-reveal" data-category="winners" style="cursor: pointer;">
+          <img src="image-25.jpeg" alt="Winner Celebration - Pitching Session Winner" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">Winner Memory</span>
+            <h4 class="gallery-item-title">Pitching Session Winner Celebration</h4>
+          </div>
+        </div>
+        <div class="gallery-item scroll-reveal" data-category="winners" style="cursor: pointer;">
+          <img src="image-26.jpeg" alt="Winner Celebration - Outstanding Achievement" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">Winner Memory</span>
+            <h4 class="gallery-item-title">Outstanding Achievement Award</h4>
+          </div>
+        </div>
+        <div class="gallery-item scroll-reveal" data-category="winners" style="cursor: pointer;">
+          <img src="image-27.jpeg" alt="Winner Celebration - Future Innovators Award" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">Winner Memory</span>
+            <h4 class="gallery-item-title">Future Innovators Award Ceremony</h4>
+          </div>
+        </div>
+        <div class="gallery-item scroll-reveal" data-category="winners" style="cursor: pointer;">
+          <img src="image-28.jpeg" alt="Winner Celebration - Grand Finale Celebration" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-tag">Winner Memory</span>
+            <h4 class="gallery-item-title">Grand Finale Winner Celebration</h4>
           </div>
         </div>
       </div>
-      <div class="carousel-controls">
-        <nav class="carousel-nav">
-          <a href="#image-1" class="carousel-dot active" aria-label="Image 1"></a>
-          <a href="#image-2" class="carousel-dot" aria-label="Image 2"></a>
-          <a href="#image-3" class="carousel-dot" aria-label="Image 3"></a>
-          <a href="#image-4" class="carousel-dot" aria-label="Image 4"></a>
-        </nav>
-      </div>
-      <p class="carousel-hint">← Swipe or click dots to navigate →</p>
     </div>
   </section>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox-modal">
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightbox-close">&times;</button>
+      <img src="" alt="" class="lightbox-img" id="lightbox-img" />
+      <p class="lightbox-caption" id="lightbox-caption"></p>
+    </div>
+  </div>
 
   <!-- ABOUT -->
   <section class="about section" id="about">
@@ -3423,45 +3768,6 @@
               <p class="info-desc">THEOREMX 2026 brings together the brightest minds in research and technology. It's an
                 opportunity to showcase innovation, network with experts, and explore the cutting edge of AI and data
                 science.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SEARCH SUBMISSIONS -->
-  <section class="search-section section" id="search">
-    <div class="container">
-      <div class="section-header centered scroll-reveal">
-        <p class="section-eyebrow">Track Your Research</p>
-        <h2 class="section-heading">Search Your Submission</h2>
-        <p class="section-subheading">Find the status of your research paper</p>
-      </div>
-      <div class="search-wrapper">
-        <div class="search-card">
-          <div class="search-input-group">
-            <input type="text" id="trackIdInput" placeholder="Enter Track ID (e.g. THX-006)" class="search-input"
-              aria-label="Track ID Search" />
-            <button id="searchBtn" class="search-btn" aria-label="Search submissions">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"></circle>
-                <path d="m21 21-4.35-4.35"></path>
-              </svg>
-              Search
-            </button>
-          </div>
-          <div id="searchResults" class="search-results" style="display:block;">
-            <div class="result-table">
-              <div class="result-row header">
-                <div class="result-cell">Track ID</div>
-                <div class="result-cell">Authors</div>
-                <div class="result-cell">Title</div>
-                <div class="result-cell">Status</div>
-                <div class="result-cell">Details</div>
-              </div>
-              <div id="resultContent"></div>
             </div>
           </div>
         </div>
@@ -3967,35 +4273,91 @@
         <h2 class="section-heading">Excellence Rewarded.</h2>
         <p class="section-subheading">Recognition across six prestigious award categories</p>
       </div>
-      <div class="awards-grid">
-        <div class="award-card scroll-reveal">
-          <h4 class="award-name">Best Research Showcase</h4>
-          <p class="award-desc">Outstanding research presentation and academic depth</p>
+      <div class="winners-grid">
+        <!-- Card 1: Best Research Showcase -->
+        <div class="winner-card scroll-reveal" data-glow>
+          <div data-glow></div>
+          <div class="winner-header">
+            <span class="winner-badge">🏆 Best Research Showcase</span>
+            <span class="winner-track">THX-072</span>
+          </div>
+          <div class="winner-content">
+            <h4 class="winner-title">"Deep Thrust AI"</h4>
+            <p class="winner-name">Selva Perumal S, Sanjay Sainathan, Siddeshwar B.S</p>
+            <p class="winner-college">S.A. Engineering College</p>
+          </div>
         </div>
-        <div class="award-card scroll-reveal">
-          <h4 class="award-name">Best Innovative Solution</h4>
-          <p class="award-desc">Most creative and impactful solution to a real problem</p>
+
+        <!-- Card 2: Best Innovative Solution -->
+        <div class="winner-card scroll-reveal" data-glow>
+          <div data-glow></div>
+          <div class="winner-header">
+            <span class="winner-badge">💡 Best Innovative Solution</span>
+            <span class="winner-track">THX-048</span>
+          </div>
+          <div class="winner-content">
+            <h4 class="winner-title">"AI-Based Early Detection of Salmonella Infection Using Vent Image Analysis"</h4>
+            <p class="winner-name">RajendraPrasad V M, Vinay Y M, Sathwik Gowda P H</p>
+            <p class="winner-college">Malnad College of Engineering,Dr.Sakunthala Engg.College</p>
+          </div>
         </div>
-        <div class="award-card scroll-reveal">
-          <h4 class="award-name">Best Technical Demo</h4>
-          <p class="award-desc">Excellence in technical execution and live demonstration</p>
+
+        <!-- Card 3: Best Technical Demo -->
+        <div class="winner-card scroll-reveal" data-glow>
+          <div data-glow></div>
+          <div class="winner-header">
+            <span class="winner-badge">💻 Best Technical Demo</span>
+            <span class="winner-track">THX-SCH-8</span>
+          </div>
+          <div class="winner-content">
+            <h4 class="winner-title">"Vision AI"</h4>
+            <p class="winner-name">Jiya Shaha M, Marcus A, Sujeet A</p>
+            <p class="winner-college">S.B.I.O.A Model School</p>
+          </div>
         </div>
-        <div class="award-card scroll-reveal">
-          <h4 class="award-name">Best Prototype</h4>
-          <p class="award-desc">Exceptional prototype with real-world applicability</p>
+
+        <!-- Card 4: Best Prototype -->
+        <div class="winner-card scroll-reveal" data-glow>
+          <div data-glow></div>
+          <div class="winner-header">
+            <span class="winner-badge">🛠️ Best Prototype</span>
+            <span class="winner-track">THX-052</span>
+          </div>
+          <div class="winner-content">
+            <h4 class="winner-title">"Creating an Annotated Dataset for Chatbot Development"</h4>
+            <p class="winner-name">Kirthika R, Prity Christy E.P, Sweety Evangelin D</p>
+            <p class="winner-college">SA College</p>
+          </div>
         </div>
-        <div class="award-card scroll-reveal">
-          <h4 class="award-name">Best Emerging Tech</h4>
-          <p class="award-desc">Cutting-edge emerging technology application</p>
+
+        <!-- Card 5: Best Emerging Tech -->
+        <div class="winner-card scroll-reveal" data-glow>
+          <div data-glow></div>
+          <div class="winner-header">
+            <span class="winner-badge">🚀 Best Emerging Tech</span>
+            <span class="winner-track">THX-051</span>
+          </div>
+          <div class="winner-content">
+            <h4 class="winner-title">"ResiScan: Explainable Protein Language Model Embeddings for Rapid Antibiotic
+              Resistance Gene Classification"</h4>
+            <p class="winner-name">Deepthi Muthukumar, Dr.Muthukumar S</p>
+            <p class="winner-college">Pondicherry University, Vel Tech</p>
+          </div>
         </div>
-        <div class="award-card scroll-reveal">
-          <h4 class="award-name">People's Choice Award</h4>
-          <p class="award-desc">Voted by all attendees the crowd's favourite</p>
+
+        <!-- Card 6: People's Choice Award -->
+        <div class="winner-card scroll-reveal" data-glow>
+          <div data-glow></div>
+          <div class="winner-header">
+            <span class="winner-badge">👥 People's Choice Award</span>
+            <span class="winner-track">THX-SCH-10</span>
+          </div>
+          <div class="winner-content">
+            <h4 class="winner-title">"Smart Scheduler"</h4>
+            <p class="winner-name">Yohan Jay Prasad A, Ram Prasad G, Sri Ranga D</p>
+            <p class="winner-college">S.B.I.O.A Model School</p>
+          </div>
         </div>
-      </div>
-      <div class="awards-note scroll-reveal">
-        <div class="awards-note-pill">Every participant receives a participation certificate</div>
-        <div class="awards-note-pill">Winners receive exciting awards in each category</div>
       </div>
     </div>
   </section>
@@ -4395,45 +4757,6 @@
 
 
           /* =========================================================
-             COUNTDOWN TIMER - to 23 June 2026 09:00 IST
-             ========================================================= */
-          const eventDate = new Date('2026-06-23T09:00:00+05:30').getTime();
-
-          const cdDays = document.getElementById('cd-days');
-          const cdHours = document.getElementById('cd-hours');
-          const cdMins = document.getElementById('cd-mins');
-          const cdSecs = document.getElementById('cd-secs');
-
-          function pad(n) { return String(n).padStart(2, '0'); }
-
-          function updateCountdown() {
-            const now = Date.now();
-            const diff = eventDate - now;
-
-            if (diff <= 0) {
-              if (cdDays) cdDays.textContent = '00';
-              if (cdHours) cdHours.textContent = '00';
-              if (cdMins) cdMins.textContent = '00';
-              if (cdSecs) cdSecs.textContent = '00';
-              return;
-            }
-
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const secs = Math.floor((diff % (1000 * 60)) / 1000);
-
-            if (cdDays) cdDays.textContent = pad(days);
-            if (cdHours) cdHours.textContent = pad(hours);
-            if (cdMins) cdMins.textContent = pad(mins);
-            if (cdSecs) cdSecs.textContent = pad(secs);
-          }
-
-          updateCountdown();
-          setInterval(updateCountdown, 1000);
-
-
-          /* =========================================================
              SCROLL REVEAL - IntersectionObserver
              ========================================================= */
           const revealObserver = new IntersectionObserver((entries) => {
@@ -4595,453 +4918,6 @@
 
       </script>
 
-      <!-- Search Submissions Script -->
-      <script>
-        document.addEventListener('DOMContentLoaded', () => {
-          // Sample submission data
-          const submissionData = [
-            {
-              trackId: "THX-001",
-              authors: "M Keerthana, B Kavinaya",
-              title: "Burnout clock - \u201cBefore You Burn, We Warn\"",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-002",
-              authors: "Sanjeev Pranay .D, Nayab .E, Venkata Mahendra",
-              title: "NEURON: A Zero-Cost Autonomous AI Research Agent with Persistent Vector Memory",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-003",
-              authors: "Chethla Saiteja, Chereddy Dinesh Reddy, CHETTE AKHIL BHARGAV",
-              title: "Al-Driven Smart City Safety and Surveillance System",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-004",
-              authors: "Vijay Pratap",
-              title: "Research paper",
-              status: "Not accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-005",
-              authors: "Likhitha Vadluri, Usha Varshini",
-              title: "EXPLAINABL MULTI CLASS BRAIN TUMOR CLASSIFICATION FROM MRI IMAGES",
-              status: "Not accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-006",
-              authors: "Ayush Kumar Ojha",
-              title: "AI-Driven Automation and Workforce Transformation: Economic Impacts, Displacement, and Reskilling Strategies",
-              status: "Not accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-007",
-              authors: "G. Guna Varshini, G. Meghana",
-              title: "System for AI",
-              status: "Not accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-008",
-              authors: "CH.DHANUSH, D.BHANU PRAKASH",
-              title: "Student study habits vs marks analyzer",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-009",
-              authors: "D.Mahesh, D.Sri Vishnu",
-              title: "Pack Smart : The Knapsack Algorithm for Hostel Students",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-010",
-              authors: "Farhana Mumtaj A, S.Evangeline Steffy, D.Mohana",
-              title: "Augmented Reality Navigation for Visually Impaired: An Intelligent Multi-Feature Assistive Framework",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-011",
-              authors: "C.Sai Shiva, CH.Chaitanya, C.CHARAN",
-              title: "SMART PARKING SYSTEM MANAGEMENT USING IOT",
-              status: "Not accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-012",
-              authors: "C Subbarayudu, Ch Surya Siddhartha, B Maheswar Reddy",
-              title: "Stock Price Prediction",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-013",
-              authors: "DIVYADHARSHINI.S, JANANI G, Parimala CH",
-              title: "HR AND EMPLOYEE MANAGEMENT SYSTEM USING MERN STACK",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-014",
-              authors: "Shriyam  Chaturvedi",
-              title: "The Role of Artificial Intelligence in Entrepreneurship and Startup Development",
-              status: "Not accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-015",
-              authors: "Yashwanth",
-              title: "Qr based intelligence assessment system",
-              status: "Not accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-016",
-              authors: "Katta Gouthami, K.Kavya, M.Mounika Chowdhary",
-              title: "AI based resume and candidate ranking system",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-017",
-              authors: "GORA MANJUNATH REDDY, Gurram Venkateswarlu, GOBBURI VISHNU VAMSI",
-              title: "Lightweight Zero-Knowledge Proof Authentication Using Schnorr Protocol on Elliptic Curves",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-018",
-              authors: "Sattwik Modak",
-              title: "Sattwik JOBS",
-              status: "Not accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-019",
-              authors: "Balendra Kumar Maddula",
-              title: "A Multifactorial Analysis of Why AI Hallucinates",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-020",
-              authors: "MOHAMMED IZHAN S",
-              title: "Crowdsourced Offline Water Quality Mapping via GSM-SMS on Raspberry Pi: A Community-Driven Participatory Sensing Architecture for Rural India Without Internet Connectivity",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-021",
-              authors: "T.Dharshini, Nishanthini A, Shaik Dhaliya",
-              title: "AgroShield: A Frugal AI-Based Counterfeit Pesticide Detection System for Smallholder Farmers",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-022",
-              authors: "Varun Dwivedi",
-              title: "Data Science & Big Data Analytics",
-              status: "Not accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-023",
-              authors: "K. Venkata Jayanth",
-              title: "TinyInfer: A From-Scratch C++17 Neural Network Inference Engine with AVX2 SIMD Kernels, ONNX Integration, and Python Bindings",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-024",
-              authors: "Chintham Muktha Sree, Bursu Siri",
-              title: "Real time emotion detection from text and facial expressions using AI",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-025",
-              authors: "Ch.Subhash, Ch.Phani Kumar, D.Manoj Kumar",
-              title: "Ai- based water quality detection using ph strip and computer vision and cloud dashboard",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-026",
-              authors: "G Yalliswar, Gadamsetty Venkata Tejaswar, E Vinay Kumar",
-              title: "Smart medicine reminder for elders",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-027",
-              authors: "Shivani, Kaviya.D",
-              title: "Web application traffic control: Configuring intercepting proxy architecture via burp suite",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-028",
-              authors: "Chinnireddy Lohitha reddy, Challa Mounika",
-              title: "Hybrid Machine learning based early disease prediction using patient symptoms and medical history",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-029",
-              authors: "Sameer Yadav",
-              title: "Acoustic Material Identification for Plastic Waste Sorting Using  Impact-Sound Analysis and a Quantized 2D-CNN on ESP32: A  Frugal Edge-AI Assistive Device for Informal Waste Pickers",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-030",
-              authors: "D.Rajitha, G.Sneha Sandhya",
-              title: "HEART RISK PREDICTION AND MONITORING SYSTEM USING ML",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-031",
-              authors: "Kalaivani. R",
-              title: "Offline Smartphone-Based Glaucoma Screening Using a Low-Cost  Fundus Clip-On Lens and On-Device Deep Learning: A Frugal  Innovation Framework for Rural India",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-032",
-              authors: "Sradha Sudheesh, Suren Subramani V",
-              title: "Automated Exploit Verification and Threat   Modeling: Implementing Penetration Testing  Lifecycle Frameworks via Metasploit",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-033",
-              authors: "Guru Sai Nath Reddy, Sudheer",
-              title: "Offline Fake Pesticide Detection via Paper-Based Sensor and Smartphone Colorimetry",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-034",
-              authors: "Ch. Sarath kumar",
-              title: "Pneumonia Detection from Lung Auscultation Sounds Using a Low-Cost Digital Stethoscope and Offline 1D-CNN Inference on ESP32: A Frugal Paediatric Screening Tool for ASHA Workers in Remote India",
-              status: "Not accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-035",
-              authors: "Challa Mounika, Chinnireddy Lohitha Reddy",
-              title: "Hybrid Machine Learning Based- Early Disease Prediction Using Patient Symptoms and Medical History",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-036",
-              authors: "KAMALINI V, JOTHIRAMAN J",
-              title: "An Advanced AI-Driven Forensic Framework for Multimodal Cybercrime Investigation and Automated Fake Profile Detection",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-037",
-              authors: "Poojaa S, Kiruthika Ruby B, Rathimeena",
-              title: "Smart Insurance Premium Prediction System Using Machine Learning",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-038",
-              authors: "R NIKHIL",
-              title: "Robust PPG Heart Rate Estimation under Motion Artifact",
-              status: "Not accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-039",
-              authors: "BOLLINENI VINAI",
-              title: "Efficient transformers for music source seperation",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-040",
-              authors: "Ranjith M, Sowmya Sri",
-              title: "Automated design of QEC Codes via Reinforcement learning",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-041",
-              authors: "Ch Ratnakar",
-              title: "Semantic Segmentation of Historical Manuscripts",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-042",
-              authors: "Sk Anwar Basha",
-              title: "Verifiable Blind Quantum Computation",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-043",
-              authors: "Anamuddin Ahmad",
-              title: "Research work",
-              status: "Not accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-044",
-              authors: "Atina Jahnavi",
-              title: "DSA patterns",
-              status: "Not accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-045",
-              authors: "Gajjala Naga Sandhya",
-              title: "Zero-Shot Event Detection in Multilingual Streams",
-              status: "Not accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-046",
-              authors: "Samuel Oral Robert",
-              title: "Detecting Silent Data Corruptions in GPUs",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-047",
-              authors: "M.Uday Krishna, M.Bala Thilak, M.Rishi",
-              title: "Web based voting management system",
-              status: "Not accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-048",
-              authors: "RajendraPrasad V M, vinay Y M, Sathwik gowda P H",
-              title: "AI-Based Early Detection of Salmonella Infection  Using Vent Image Analysis",
-              status: "Not accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-049",
-              authors: "Hari Prasad K, Ganesh M",
-              title: "LinkShield \u2013 Intelligent URL Analysis, Threat Detection & Phishing Learning Hub",
-              status: "Not accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-050",
-              authors: "Galeti Hema Sree, G.Meghana, G.Guna Varshini",
-              title: "Resume to job-match",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-051",
-              authors: "Deepthi Muthukumar, Muthukumar S",
-              title: "ResiScan: Explainable Protein Language Model Embeddings for Rapid Antibiotic Resistance Gene Classification",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-052",
-              authors: "Kirthika R, Prity christy E.P, Sweety Evangelin D",
-              title: "Creating an Annotated Dataset for an Chatbot Development",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-053",
-              authors: "Bhoobika, Shoaiba Fathima, Harsha vardhini",
-              title: "Speech data for regional language recognition",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-054",
-              authors: "Dacharla Rajitha, Gaddam Sneha Sandhya",
-              title: "HEART RISK PREDICTION AND MONITORING SYSTEM",
-              status: "Accepted",
-              remarks: '--'
-            },
-            {
-              trackId: "THX-055",
-              authors: "SANTOSH RAJ T A, MANISH RAJKHUMAR O, KAVIN S",
-              title: "IoT-Based Smart Ventilator with Real-Time Monitoring",
-              status: "Accepted",
-              remarks: '--'
-            },
-          ];
-
-          const searchInput = document.getElementById('trackIdInput');
-          const searchBtn = document.getElementById('searchBtn');
-          const searchResults = document.getElementById('searchResults');
-          const resultContent = document.getElementById('resultContent');
-
-          function displaySubmissions(data) {
-            resultContent.innerHTML = data.map((item, index) => `
-          <div class="result-row" style="animation: fadeSlideUp 0.6s ease-out ${index * 80}ms forwards; grid-template-columns: 0.8fr 1.5fr 2fr 1fr 1.5fr;">
-            <div class="result-cell" style="font-weight: 600; color: var(--accent);">${item.trackId}</div>
-            <div class="result-cell" style="font-size: 0.85rem; font-weight: 500;">${item.authors}</div>
-            <div class="result-cell">${item.title}</div>
-            <div class="result-cell" style="color: ${item.status.toLowerCase() === 'accepted' ? '#10b981' : '#ef4444'}; font-weight: 500;">${item.status}</div>
-            <div class="result-cell" style="font-size: 0.8rem;">
-              ${item.status.toLowerCase() === 'accepted' ? 'Mode :Offline <br> Venue : Dr. M. G. R. Educational and Research Institute' : item.remarks}
-            </div>
-          </div>
-        `).join('');
-            searchResults.style.display = 'block';
-          }
-
-          function performSearch() {
-            const trackId = searchInput.value.trim().toUpperCase();
-
-            if (!trackId) {
-              displaySubmissions(submissionData);
-              return;
-            }
-
-            const results = submissionData.filter(item => item.trackId === trackId);
-
-            if (results.length === 0) {
-              resultContent.innerHTML = `
-            <div style="padding: 2rem; text-align: center; color: var(--text-sub);">
-              <p>No submission found with Track ID: ${trackId}</p>
-              <p style="font-size: 0.8rem; margin-top: 0.5rem;">Please check your Track ID and try again.</p>
-            </div>
-          `;
-              searchResults.style.display = 'block';
-              return;
-            }
-
-            displaySubmissions(results);
-          }
-
-          // Display all submissions on page load
-          displaySubmissions(submissionData);
-
-          searchBtn.addEventListener('click', performSearch);
-          searchInput.addEventListener('keypress', e => {
-            if (e.key === 'Enter') performSearch();
-          });
-          searchInput.addEventListener('input', performSearch);
-        });
-      </script>
-
       <!-- Scroll Animation Script -->
       <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -5068,125 +4944,94 @@
       </script>
 
       <script>
-        // Launch Event Gallery Carousel Functionality
-        document.addEventListener('DOMContentLoaded', function () {
-          const carouselItems = document.querySelectorAll('.carousel-item');
-          const carouselDots = document.querySelectorAll('.carousel-dot');
-          let currentIndex = 0;
-          let autoScrollInterval;
+        // Event Gallery Filtering and Lightbox Functionality
+        document.addEventListener('DOMContentLoaded', () => {
+          const filterBtns = document.querySelectorAll('.gallery-filter-btn');
+          const galleryItems = document.querySelectorAll('.gallery-item');
+          const lightbox = document.getElementById('lightbox');
+          const lightboxImg = document.getElementById('lightbox-img');
+          const lightboxCaption = document.getElementById('lightbox-caption');
+          const lightboxClose = document.getElementById('lightbox-close');
 
-          const showSlide = (index) => {
-            // Remove active class from all items and dots
-            carouselItems.forEach(item => item.classList.remove('active'));
-            carouselDots.forEach(dot => dot.classList.remove('active'));
-
-            // Add active class to current item and dot
-            if (carouselItems[index]) {
-              carouselItems[index].classList.add('active');
-              carouselDots[index].classList.add('active');
-            }
-          };
-
-          const nextSlide = () => {
-            currentIndex = (currentIndex + 1) % carouselItems.length;
-            showSlide(currentIndex);
-          };
-
-          const goToSlide = (index) => {
-            currentIndex = index;
-            showSlide(currentIndex);
-            resetAutoScroll();
-          };
-
-          const startAutoScroll = () => {
-            autoScrollInterval = setInterval(nextSlide, 3000); // 3 seconds
-          };
-
-          const resetAutoScroll = () => {
-            clearInterval(autoScrollInterval);
-            startAutoScroll();
-          };
-
-          // Dot click handlers
-          carouselDots.forEach((dot, index) => {
-            dot.addEventListener('click', (e) => {
+          // Filtering
+          filterBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
               e.preventDefault();
-              goToSlide(index);
+              filterBtns.forEach(b => b.classList.remove('active'));
+              btn.classList.add('active');
+
+              const filter = btn.getAttribute('data-filter');
+
+              galleryItems.forEach(item => {
+                const cat = item.getAttribute('data-category');
+                if (filter === 'all' || cat === filter) {
+                  item.style.display = 'block';
+                  setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0) scale(1)';
+                  }, 50);
+                } else {
+                  item.style.opacity = '0';
+                  item.style.transform = 'translateY(15px) scale(0.95)';
+                  setTimeout(() => {
+                    item.style.display = 'none';
+                  }, 300);
+                }
+              });
             });
           });
 
-          // Keyboard navigation (arrow keys)
-          document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-              currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
-              showSlide(currentIndex);
-              resetAutoScroll();
-            } else if (e.key === 'ArrowRight') {
-              nextSlide();
-              resetAutoScroll();
-            }
+          // Lightbox Open
+          galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+              const img = item.querySelector('img');
+              const captionText = item.querySelector('.gallery-item-title').textContent;
+              if (img && lightboxImg) {
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                if (lightboxCaption) lightboxCaption.textContent = captionText;
+                lightbox.classList.add('active');
+              }
+            });
           });
 
-          // Touch/Swipe support
-          let touchStartX = 0;
-          let touchEndX = 0;
-
-          const gallery = document.querySelector('.gallery-container');
-          if (gallery) {
-            gallery.addEventListener('touchstart', (e) => {
-              touchStartX = e.changedTouches[0].screenX;
-            }, false);
-
-            gallery.addEventListener('touchend', (e) => {
-              touchEndX = e.changedTouches[0].screenX;
-              handleSwipe();
-            }, false);
-          }
-
-          const handleSwipe = () => {
-            if (touchEndX < touchStartX - 50) {
-              // Swiped left - next image
-              nextSlide();
-              resetAutoScroll();
-            } else if (touchEndX > touchStartX + 50) {
-              // Swiped right - previous image
-              currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
-              showSlide(currentIndex);
-              resetAutoScroll();
-            }
+          // Lightbox Close
+          const closeLightbox = () => {
+            if (lightbox) lightbox.classList.remove('active');
           };
 
-          // Mouse drag support (optional enhancement)
-          let isDragging = false;
-          let dragStartX = 0;
-
-          gallery?.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            dragStartX = e.screenX;
-          });
-
-          gallery?.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-          });
-
-          gallery?.addEventListener('mouseup', (e) => {
-            if (!isDragging) return;
-            isDragging = false;
-
-            if (e.screenX < dragStartX - 50) {
-              nextSlide();
-              resetAutoScroll();
-            } else if (e.screenX > dragStartX + 50) {
-              currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
-              showSlide(currentIndex);
-              resetAutoScroll();
+          if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+          lightbox?.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+              closeLightbox();
             }
           });
 
-          // Start auto-scroll
-          startAutoScroll();
+          // Escape key to close
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+          });
         });
       </script>
+
+      <!-- GlowCard spotlight cursor tracking -->
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const syncPointer = (e) => {
+            const { clientX: x, clientY: y } = e;
+            const xp = (x / window.innerWidth).toFixed(2);
+            const yp = (y / window.innerHeight).toFixed(2);
+            document.querySelectorAll('.winner-card').forEach(el => {
+              el.style.setProperty('--x', x.toFixed(2));
+              el.style.setProperty('--xp', xp);
+              el.style.setProperty('--y', y.toFixed(2));
+              el.style.setProperty('--yp', yp);
+            });
+          };
+          document.addEventListener('pointermove', syncPointer);
+        });
+      </script>
+
 </body>
 
 </html>

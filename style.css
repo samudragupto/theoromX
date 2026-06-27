@@ -1939,3 +1939,307 @@ button { font-family: inherit; cursor: pointer; }
   opacity: 1;
   transform: translateY(0);
 }
+
+    /* ============================================================
+       POST-EVENT CUSTOM STYLES (STATS PANEL & WINNERS GALLERY)
+       ============================================================ */
+    .stats-panel {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      background: rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 1.5rem 2.5rem;
+      box-shadow: var(--shadow-lg);
+      max-width: 800px;
+      margin-top: 2rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      flex: 1;
+      min-width: 120px;
+    }
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      background: var(--accent-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+    }
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-sub);
+      margin-top: 0.4rem;
+      font-weight: 600;
+    }
+    .stat-divider {
+      width: 1px;
+      height: 40px;
+      background: var(--border);
+    }
+    @media (max-width: 768px) {
+      .stats-panel {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        padding: 1.5rem;
+      }
+      .stat-divider {
+        display: none;
+      }
+    }
+
+    /* ============================================================
+   GLOW CARD SPOTLIGHT EFFECTS (FOR WINNERS SECTION)
+   ============================================================ */
+.winners-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.winner-card {
+  --base: 280; /* Purple/Indigo theme */
+  --spread: 200;
+  --radius: 16;
+  --border: 2;
+  --backdrop: var(--bg-glass);
+  --size: 250;
+  --outer: 1;
+  --border-size: calc(var(--border, 2) * 1px);
+  --spotlight-size: calc(var(--size, 150) * 1px);
+  --hue: calc(var(--base) + (var(--xp, 0) * var(--spread, 0)));
+  --bg-spot-opacity: 0.08;
+  --border-spot-opacity: 0.6;
+  --border-light-opacity: 0.25;
+
+  position: relative;
+  background-image: radial-gradient(
+    var(--spotlight-size) var(--spotlight-size) at
+    calc(var(--x, 0) * 1px)
+    calc(var(--y, 0) * 1px),
+    hsl(var(--hue, 210) 100% 70% / var(--bg-spot-opacity, 0.08)), transparent
+  );
+  background-color: var(--backdrop, transparent);
+  background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
+  background-position: 50% 50%;
+  background-attachment: fixed;
+  border: var(--border-size) solid var(--bg-glass-border);
+  border-radius: var(--radius-lg);
+  padding: 2.2rem 2rem;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--duration-normal) var(--ease-out-expo),
+    box-shadow var(--duration-normal) var(--ease-out-expo),
+    border-color var(--duration-normal) var(--ease-out-expo);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  box-sizing: border-box;
+  min-height: 280px;
+  touch-action: none;
+}
+
+.winner-card::before,
+.winner-card::after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  inset: calc(var(--border-size) * -1);
+  border: var(--border-size) solid transparent;
+  border-radius: calc(var(--radius) * 1px);
+  background-attachment: fixed;
+  background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  -webkit-mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
+  -webkit-mask-clip: padding-box, border-box;
+  -webkit-mask-composite: source-in, xor;
+  mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
+  mask-clip: padding-box, border-box;
+  mask-composite: intersect;
+}
+
+.winner-card::before {
+  background-image: radial-gradient(
+    calc(var(--spotlight-size) * 0.75) calc(var(--spotlight-size) * 0.75) at
+    calc(var(--x, 0) * 1px)
+    calc(var(--y, 0) * 1px),
+    hsl(var(--hue, 210) 100% 70% / var(--border-spot-opacity, 0.6)), transparent 100%
+  );
+  filter: brightness(1.5);
+}
+
+.winner-card::after {
+  background-image: radial-gradient(
+    calc(var(--spotlight-size) * 0.5) calc(var(--spotlight-size) * 0.5) at
+    calc(var(--x, 0) * 1px)
+    calc(var(--y, 0) * 1px),
+    hsl(0 100% 100% / var(--border-light-opacity, 0.25)), transparent 100%
+  );
+}
+
+/* Glow backdrop blur overlay */
+.winner-card > [data-glow] {
+  position: absolute;
+  inset: 0;
+  will-change: filter;
+  opacity: var(--outer, 1);
+  border-radius: calc(var(--radius) * 1px);
+  border-width: calc(var(--border-size) * 20);
+  filter: blur(calc(var(--border-size) * 10));
+  background: none;
+  pointer-events: none;
+  border: none;
+}
+
+.winner-card > [data-glow]::before {
+  inset: -10px;
+  border-width: 10px;
+}
+
+.winner-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-xl), 0 0 25px rgba(79, 70, 229, 0.25);
+  border-color: rgba(79, 70, 229, 0.35);
+}
+
+.winner-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.2rem;
+  width: 100%;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.winner-badge {
+  display: inline-block;
+  align-self: center;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--purple);
+  background: rgba(124, 58, 237, 0.1);
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-full);
+}
+
+.winner-track {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: rgba(79, 70, 229, 0.1);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.05em;
+}
+
+.winner-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  flex-grow: 1;
+  width: 100%;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.winner-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.4;
+  margin: 0;
+  text-align: center;
+}
+
+.winner-name {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  max-width: 100%;
+  align-self: center;
+  padding: 0.78rem 1rem;
+  font-size: 0.96rem;
+  font-weight: 800;
+  line-height: 1.5;
+  color: #312e81;
+  margin: 0.2rem 0 0;
+  text-align: center;
+  border: 1px solid rgba(234, 179, 8, 0.34);
+  border-radius: 14px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(245, 243, 255, 0.88)),
+    radial-gradient(circle at top left, rgba(250, 204, 21, 0.28), transparent 58%);
+  box-shadow:
+    0 14px 34px rgba(49, 46, 129, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--duration-normal) var(--ease-out-expo),
+    box-shadow var(--duration-normal) var(--ease-out-expo),
+    border-color var(--duration-normal) var(--ease-out-expo);
+}
+
+.winner-name::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.7) 45%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 700ms var(--ease-out-expo);
+  pointer-events: none;
+}
+
+.winner-card:hover .winner-name {
+  transform: translateY(-2px);
+  border-color: rgba(234, 179, 8, 0.58);
+  box-shadow:
+    0 18px 40px rgba(79, 70, 229, 0.18),
+    0 0 22px rgba(234, 179, 8, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+.winner-card:hover .winner-name::before {
+  transform: translateX(120%);
+}
+
+.winner-college {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--indigo);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: auto;
+  text-align: center;
+}

@@ -1,93 +1,4 @@
-/* ============================================================
-   THEOREMX 2026 — Premium Apple-Inspired JavaScript
-   ============================================================ */
 
-document.addEventListener('DOMContentLoaded', () => {
-
-  /* =========================================================
-     NAVBAR — SCROLL GLASSMORPHISM
-     ========================================================= */
-  const navbar = document.getElementById('navbar');
-
-  const navScrollHandler = () => {
-    if (window.scrollY > 24) {
-      navbar?.classList.add('scrolled');
-    } else {
-      navbar?.classList.remove('scrolled');
-    }
-  };
-
-  window.addEventListener('scroll', navScrollHandler, { passive: true });
-  navScrollHandler();
-
-
-  /* =========================================================
-     MOBILE NAV
-     ========================================================= */
-  const hamburger   = document.getElementById('hamburger');
-  const mobileNav   = document.getElementById('mobileNav');
-  const navClose    = document.getElementById('mobileNavClose');
-  const mobileLinks = document.querySelectorAll('.mobile-nav-link');
-
-  function openMobileNav() {
-    hamburger?.classList.add('open');
-    mobileNav?.classList.add('open');
-    mobileNav?.setAttribute('aria-hidden', 'false');
-    hamburger?.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeMobileNav() {
-    hamburger?.classList.remove('open');
-    mobileNav?.classList.remove('open');
-    mobileNav?.setAttribute('aria-hidden', 'true');
-    hamburger?.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-  }
-
-  hamburger?.addEventListener('click', openMobileNav);
-  navClose?.addEventListener('click', closeMobileNav);
-  mobileLinks.forEach(l => l.addEventListener('click', closeMobileNav));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileNav(); });
-
-
-  /* =========================================================
-     COUNTDOWN TIMER — to 24 June 2026 09:00 IST
-     ========================================================= */
-  const eventDate = new Date('2026-06-24T09:00:00+05:30').getTime();
-
-  const cdDays  = document.getElementById('cd-days');
-  const cdHours = document.getElementById('cd-hours');
-  const cdMins  = document.getElementById('cd-mins');
-  const cdSecs  = document.getElementById('cd-secs');
-
-  function pad(n) { return String(n).padStart(2, '0'); }
-
-  function updateCountdown() {
-    const now  = Date.now();
-    const diff = eventDate - now;
-
-    if (diff <= 0) {
-      if (cdDays)  cdDays.textContent  = '00';
-      if (cdHours) cdHours.textContent = '00';
-      if (cdMins)  cdMins.textContent  = '00';
-      if (cdSecs)  cdSecs.textContent  = '00';
-      return;
-    }
-
-    const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const mins  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const secs  = Math.floor((diff % (1000 * 60)) / 1000);
-
-    if (cdDays)  cdDays.textContent  = pad(days);
-    if (cdHours) cdHours.textContent = pad(hours);
-    if (cdMins)  cdMins.textContent  = pad(mins);
-    if (cdSecs)  cdSecs.textContent  = pad(secs);
-  }
-
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
 
 
   /* =========================================================
@@ -209,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* =========================================================
      MICRO INTERACTION — Card glow on mouse move
      ========================================================= */
-  const glowCards = document.querySelectorAll('.stall-card, .award-card, .theme-card, .feature-card');
+  const glowCards = document.querySelectorAll('.stall-card, .winner-card, .theme-card, .feature-card');
 
   glowCards.forEach(card => {
     card.addEventListener('mousemove', e => {
@@ -238,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
     card.style.setProperty('--reveal-delay', `${i * 60}ms`);
   });
 
-  document.querySelectorAll('.award-card').forEach((card, i) => {
+  document.querySelectorAll('.winner-card').forEach((card, i) => {
     card.style.setProperty('--reveal-delay', `${i * 55}ms`);
   });
 
